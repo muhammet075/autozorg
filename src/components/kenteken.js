@@ -7,10 +7,44 @@ function Kenteken() {
     document.querySelector(".container2").classList.remove("displaynone");
 
     document.querySelector(".kentekenheaderh1").innerHTML =
-      "Wat is het kenteken?";
+      "Wat is jouw kenteken?";
   }
 
-  function secondButton() {}
+  async function secondButton() {
+    if (document.querySelector(".kentekeninput").value.length === 6) {
+      const kenteken =
+        "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" +
+        document.querySelector(".kentekeninput").value.toUpperCase();
+
+      const kentekenbrandstof =
+        "https://opendata.rdw.nl/resource/8ys7-d773.json?kenteken=" +
+        document.querySelector(".kentekeninput").value.toUpperCase();
+
+      console.log(kenteken + kentekenbrandstof);
+
+      const response = await fetch(kenteken);
+      const jsondata = await response.json();
+
+      const responsebrandstof = await fetch(kentekenbrandstof);
+      const jsondatabrandstof = await responsebrandstof.json();
+
+      console.log(jsondata[0]);
+
+      const kentekendata = [
+        {
+          kenteken: jsondata[0].kenteken,
+          handelsbenaming: jsondata[0].handelsbenaming,
+          merk: jsondata[0].merk,
+          apk: jsondata[0].vervaldatum_apk,
+          brandstof: jsondatabrandstof[0].brandstof_omschrijving,
+        },
+      ];
+
+      console.log(kentekendata);
+    } else {
+      console.log("Error state");
+    }
+  }
 
   return (
     <div>
@@ -56,7 +90,11 @@ function Kenteken() {
               <p>NL</p>
             </div>
             <div>
-              <input type='text' maxLength={6}></input>
+              <input
+                type='text'
+                maxLength={6}
+                className='kentekeninput'
+              ></input>
             </div>
           </section>
         </div>
