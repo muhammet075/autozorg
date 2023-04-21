@@ -43,6 +43,11 @@ function Kenteken() {
 
         console.log(kentekendata[0]);
 
+        localStorage.setItem("kenteken", JSON.stringify(kentekendata[0]));
+
+        let getItem = localStorage.getItem("kenteken");
+        console.log(JSON.parse(getItem));
+
         document.querySelector(".container2").classList.add("displaynone");
         document.querySelector(".container3").classList.remove("displaynone");
 

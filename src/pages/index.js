@@ -1,8 +1,28 @@
 import Head from "next/head";
+import { useEffect } from "react";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
+import Opening from "@/components/opening";
 
 export default function Home() {
+  useEffect(() => {
+    let getItem = localStorage.getItem("kenteken");
+    let data = JSON.parse(getItem);
+
+    console.log(data);
+
+    try {
+      document.querySelector(".hm").innerHTML = data.kenteken;
+      setTimeout(() => {
+        window.location = "/dashboard";
+      }, 1500);
+    } catch (e) {
+      setTimeout(() => {
+        window.location = "/register";
+      }, 1500);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -11,6 +31,11 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
+      <div>
+        <p className='hm'></p>
+        <Opening />
+      </div>
     </>
   );
 }

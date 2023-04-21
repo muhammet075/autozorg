@@ -1,0 +1,108 @@
+.opening {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffff;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.opening img {
+  margin: 20px 0 100px 0;
+}
+
+@keyframes spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.spinner div {
+  left: 116.885px;
+  top: 53.02px;
+  position: absolute;
+  animation: spinner linear 0.7633587786259541s infinite;
+  background: #0c79dd;
+  width: 7.23px;
+  height: 24.1px;
+  border-radius: 0px / 0px;
+  transform-origin: 3.615px 67.48px;
+}
+.spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -0.6939625260235948s;
+  background: #0c79dd;
+}
+.spinner div:nth-child(2) {
+  transform: rotate(32.72727272727273deg);
+  animation-delay: -0.6245662734212353s;
+  background: #0c79dd;
+}
+.spinner div:nth-child(3) {
+  transform: rotate(65.45454545454545deg);
+  animation-delay: -0.5551700208188758s;
+  background: #0c79dd;
+}
+.spinner div:nth-child(4) {
+  transform: rotate(98.18181818181819deg);
+  animation-delay: -0.4857737682165163s;
+  background: #0c79dd;
+}
+.spinner div:nth-child(5) {
+  transform: rotate(130.9090909090909deg);
+  animation-delay: -0.4163775156141568s;
+  background: #0c79dd;
+}
+.spinner div:nth-child(6) {
+  transform: rotate(163.63636363636363deg);
+  animation-delay: -0.3469812630117974s;
+  background: #0c79dd;
+}
+.spinner div:nth-child(7) {
+  transform: rotate(196.36363636363637deg);
+  animation-delay: -0.2775850104094379s;
+  background: #0c79dd;
+}
+.spinner div:nth-child(8) {
+  transform: rotate(229.0909090909091deg);
+  animation-delay: -0.2081887578070784s;
+  background: #0c79dd;
+}
+.spinner div:nth-child(9) {
+  transform: rotate(261.8181818181818deg);
+  animation-delay: -0.13879250520471895s;
+  background: #0c79dd;
+}
+.spinner div:nth-child(10) {
+  transform: rotate(294.54545454545456deg);
+  animation-delay: -0.06939625260235947s;
+  background: #0c79dd;
+}
+.spinner div:nth-child(11) {
+  transform: rotate(327.27272727272725deg);
+  animation-delay: 0s;
+  background: #0c79dd;
+}
+.loadingio-spinner-spinner-ja74yhf5dx {
+  width: 241px;
+  height: 241px;
+  display: inline-block;
+  overflow: hidden;
+  background: #ffffff;
+}
+.spinner {
+  width: 230px;
+  height: auto;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.spinner div {
+  box-sizing: content-box;
+}
