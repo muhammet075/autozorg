@@ -30,19 +30,32 @@ function Kenteken() {
 
       console.log(jsondata[0]);
 
-      const kentekendata = [
-        {
-          kenteken: jsondata[0].kenteken,
-          handelsbenaming: jsondata[0].handelsbenaming,
-          merk: jsondata[0].merk,
-          apk: jsondata[0].vervaldatum_apk,
-          brandstof: jsondatabrandstof[0].brandstof_omschrijving,
-        },
-      ];
+      try {
+        const kentekendata = [
+          {
+            kenteken: jsondata[0].kenteken,
+            handelsbenaming: jsondata[0].handelsbenaming,
+            merk: jsondata[0].merk,
+            apk: jsondata[0].vervaldatum_apk,
+            brandstof: jsondatabrandstof[0].brandstof_omschrijving,
+          },
+        ];
 
-      console.log(kentekendata);
+        console.log(kentekendata[0]);
+
+        document.querySelector(".container2").classList.add("displaynone");
+        document.querySelector(".container3").classList.remove("displaynone");
+
+        document.querySelector(".merknaam").innerHTML = kentekendata[0].merk;
+        document.querySelector(".handelsnaam").innerHTML =
+          kentekendata[0].handelsbenaming;
+        document.querySelector(".kentekendata").innerHTML =
+          kentekendata[0].kenteken;
+      } catch (e) {
+        console.log("error weer");
+      }
     } else {
-      console.log("Error state");
+      console.log("Error state: Voer een geldige kenteken in");
     }
   }
 
@@ -101,6 +114,18 @@ function Kenteken() {
         <button onClick={secondButton} className={styles.button}>
           Kenteken zoeken
         </button>
+      </div>
+
+      <div className={styles.container3 + " " + "container3 displaynone"}>
+        <div>
+          <p>MERK IMG</p>
+          <h2 className='merknaam'></h2>
+          <h3 className='handelsnaam'></h3>
+          <section>
+            <p className='kentekendata'></p>
+          </section>
+          <p>Als dit de juiste auto is, klik dan op de onderstaande knop.</p>
+        </div>
       </div>
     </div>
   );
