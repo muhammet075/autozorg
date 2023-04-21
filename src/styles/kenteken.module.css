@@ -1,0 +1,95 @@
+.button {
+  background-color: #0c79dd;
+  padding: 25px 5px;
+  border: none;
+  width: 90%;
+  position: absolute;
+  margin: auto;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  color: #ffff;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.kentekenheader {
+  background-color: #0c79dd;
+}
+
+.kentekenheader > div {
+  width: 75%;
+  margin: 0 auto;
+  padding: 15px 0px 20px 0px;
+  text-align: center;
+  color: #ffff;
+  text-transform: uppercase;
+  font-size: 0.6em;
+}
+
+.container1 > div {
+  width: 100%;
+  padding: 0 15px;
+  margin: 25px auto;
+}
+
+.container1 > div p {
+  margin: 25px 0;
+  text-align: center;
+}
+
+.container2 > div {
+  width: 100%;
+  padding: 0 15px;
+  margin: 75px auto 0 auto;
+}
+
+.container2 > div section {
+  background-color: #f4be02;
+  height: 60px;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  border-radius: 5px;
+  border: 2px solid #000;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.container2 > div section div:nth-of-type(1) {
+  background-color: #1b65a2;
+  position: relative;
+  width: 10%;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.container2 > div section div:nth-of-type(1) p {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  color: #ffff;
+  font-weight: 500;
+}
+
+.container2 > div section div:nth-of-type(2) {
+  width: 90%;
+}
+
+.container2 > div section div:nth-of-type(2) input {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  background: none;
+  background: none;
+  border: none;
+  font-size: 2.7em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
