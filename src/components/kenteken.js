@@ -2,6 +2,11 @@ import styles from "../styles/kenteken.module.css";
 import { useEffect } from "react";
 
 function Kenteken() {
+  let kentekendata;
+  let laatsteKmStand;
+  let laatsteSoortOnderhoud;
+  let laatsteSoortOnderhoudDatum;
+
   function firstButton() {
     document.querySelector(".container1").classList.add("displaynone");
     document.querySelector(".container2").classList.remove("displaynone");
@@ -31,37 +36,112 @@ function Kenteken() {
       console.log(jsondata[0]);
 
       try {
-        const kentekendata = [
-          {
-            kenteken: jsondata[0].kenteken,
-            handelsbenaming: jsondata[0].handelsbenaming,
-            merk: jsondata[0].merk,
-            apk: jsondata[0].vervaldatum_apk,
-            brandstof: jsondatabrandstof[0].brandstof_omschrijving,
-          },
-        ];
+        kentekendata = {
+          kenteken: jsondata[0].kenteken,
+          handelsbenaming: jsondata[0].handelsbenaming,
+          merk: jsondata[0].merk,
+          apk_datum: jsondata[0].vervaldatum_apk,
+          brandstof: jsondatabrandstof[0].brandstof_omschrijving,
+        };
 
-        console.log(kentekendata[0]);
+        // localStorage.setItem("kenteken", JSON.stringify(kentekendata[0]));
 
-        localStorage.setItem("kenteken", JSON.stringify(kentekendata[0]));
-
-        let getItem = localStorage.getItem("kenteken");
-        console.log(JSON.parse(getItem));
+        // let getItem = localStorage.getItem("kenteken");
+        // console.log(JSON.parse(getItem));
 
         document.querySelector(".container2").classList.add("displaynone");
         document.querySelector(".container3").classList.remove("displaynone");
 
-        document.querySelector(".merknaam").innerHTML = kentekendata[0].merk;
+        document.querySelector(".merknaam").innerHTML = kentekendata.merk;
         document.querySelector(".handelsnaam").innerHTML =
-          kentekendata[0].handelsbenaming;
+          kentekendata.handelsbenaming;
         document.querySelector(".kentekendata").innerHTML =
-          kentekendata[0].kenteken;
+          kentekendata.kenteken;
       } catch (e) {
         console.log("error weer");
       }
     } else {
       console.log("Error state: Voer een geldige kenteken in");
     }
+  }
+
+  function thirdButton() {
+    document.querySelector(".container3").classList.add("displaynone");
+    document.querySelector(".container4").classList.remove("displaynone");
+
+    console.log(kentekendata);
+  }
+
+  function fourthButton() {
+    document.querySelector(".container4").classList.add("displaynone");
+    document.querySelector(".container5").classList.remove("displaynone");
+
+    console.log(document.querySelector(".huidigeKilometerstand").value);
+
+    let kmstand = document.querySelector(".huidigeKilometerstand").value;
+
+    JSON.parse(kmstand);
+
+    kentekendata["kilometerstand"] = kmstand;
+
+    console.log(kentekendata);
+  }
+
+  function laatsteOnderhoudOnbekend() {
+    document.querySelector(".container5").classList.add("displaynone");
+    document
+      .querySelector(".onderhoudonbekend")
+      .classList.remove("displaynone");
+
+    let kmstand = document.querySelector(".huidigeKilometerstand").value;
+    kentekendata["onderhoud_bij_aantal_km"] = kmstand;
+    kentekendata["eerst_volgende_onderhoud"] = "Grote beurt";
+  }
+
+  function onderhoudOnbekendButton() {
+    localStorage.setItem("kenteken", JSON.stringify(kentekendata));
+    let getItem = localStorage.getItem("kenteken");
+
+    console.log(JSON.parse(getItem));
+    window.location = "/dashboard";
+  }
+
+  function laatsteOnderhoudBekend() {
+    document.querySelector(".container5").classList.add("displaynone");
+    document.querySelector(".onderhoudbekend").classList.remove("displaynone");
+  }
+
+  function onderhoudbekend() {
+    document.querySelector(".onderhoudbekend").classList.add("displaynone");
+    document.querySelector(".datumcontainer").classList.remove("displaynone");
+
+    laatsteKmStand = document.querySelector(".kmstandonderhoud").value;
+    laatsteSoortOnderhoud = document.querySelector(
+      'input[name="onderhoudsradio"]:checked'
+    ).value;
+  }
+
+  function onderhoudBekendAfronden() {
+    laatsteSoortOnderhoudDatum =
+      document.querySelector(".onderhoudsdatum").value;
+
+    console.log(
+      laatsteSoortOnderhoudDatum + laatsteKmStand + laatsteSoortOnderhoud
+    );
+
+    let kmstand = document.querySelector(".huidigeKilometerstand").value;
+
+    console.log("kmstand " + kmstand);
+
+    let hm = Number(laatsteKmStand) + 15000;
+    console.log("hm" + hm);
+
+    let nieuwkmstand = hm - Number(kmstand);
+
+    console.log("nieuwkmstand " + nieuwkmstand);
+
+    kentekendata["onderhoud_bij_aantal_km"] = kmstand;
+    kentekendata["eerst_volgende_onderhoud"] = "Grote beurt";
   }
 
   return (
@@ -131,6 +211,123 @@ function Kenteken() {
           </section>
           <p>Als dit de juiste auto is, klik dan op de onderstaande knop.</p>
         </div>
+        <button onClick={thirdButton} className={styles.button}>
+          Kenteken toevoegen
+        </button>
+      </div>
+
+      <div className={styles.container4 + " " + "container4 displaynone"}>
+        <div>
+          <p>Wat is de huidige kilometerstand?</p>
+          <input
+            type='text'
+            placeholder='Bijv: 125.000 KM'
+            className='huidigeKilometerstand'
+          ></input>
+        </div>
+        <button onClick={fourthButton} className={styles.button}>
+          Volgende
+        </button>
+      </div>
+
+      <div className={styles.container5 + " " + "container5 displaynone"}>
+        <div>
+          <p>
+            Weet je wanneer de laatst uitgevoerde onderhoudsbeurt is uitgevoerd?
+          </p>
+        </div>
+        <button
+          onClick={laatsteOnderhoudBekend}
+          className={styles.onderhoudknop}
+        >
+          Ja
+        </button>
+        <button
+          onClick={laatsteOnderhoudOnbekend}
+          className={styles.onderhoudknop}
+        >
+          Nee
+        </button>
+      </div>
+
+      <div
+        className={styles.onderhoudbekend + " " + "onderhoudbekend displaynone"}
+      >
+        <div>
+          <p>Wat was de kilometerstand van de laatste onderhoudsbeurt?</p>
+          <input
+            type='text'
+            className='kmstandonderhoud'
+            placeholder='Bijv: 80.000 km'
+          ></input>
+          <br />
+
+          <p>Was het een grote of kleine onderhoudsbeurt?</p>
+
+          <input
+            type='radio'
+            id='kleinebeurtradio'
+            name='onderhoudsradio'
+            value='kleinebeurt'
+          />
+          <label for='kleinebeurtradio'>Kleine onderhoudsbeurt</label>
+
+          <input
+            type='radio'
+            id='grotebeurtradio'
+            name='onderhoudsradio'
+            value='grotebeurt'
+          />
+          <label for='grotebeurtradio'>Grote onderhoudsbeurt</label>
+        </div>
+        <button onClick={onderhoudbekend} className={styles.button}>
+          Volgende
+        </button>
+      </div>
+
+      <div
+        className={styles.datumcontainer + " " + "datumcontainer displaynone"}
+      >
+        <div>
+          <p>Wat was de datum van de laatst uitgevoerd beurt?</p>
+          <input
+            type='date'
+            className='onderhoudsdatum'
+            placeholder='Bijv: 80.000 km'
+          ></input>
+          <br />
+        </div>
+        <button onClick={onderhoudBekendAfronden} className={styles.button}>
+          Afronden
+        </button>
+      </div>
+
+      <div
+        className={
+          styles.onderhoudonbekend + " " + "onderhoudonbekend displaynone"
+        }
+      >
+        <div>
+          <p>
+            Omdat je de laatst uitgevoerde onderhoudsbeurt niet weet adviseren
+            wij jou nu om zo snel mogelijk een grote onderhoudsbeurt te laten
+            uitvoeren, door een garage die je gemakkelijk kan vinden door deze
+            app.
+          </p>
+
+          <p>
+            Hierdoor voorkom jij schade en slijtage aan je motor en dat kan dure
+            reparaties kosten.
+          </p>
+
+          <p>
+            Na jouw onderhoudsbeurt is deze app overzichtelijker en gereed voor
+            gebruik!
+          </p>
+        </div>
+        <button onClick={onderhoudOnbekendButton} className={styles.button}>
+          Afronden
+        </button>
       </div>
     </div>
   );
