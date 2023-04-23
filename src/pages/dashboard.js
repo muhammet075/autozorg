@@ -29,10 +29,21 @@ export default function Dashboard() {
         <span className='handelsbenaming'></span>
       </p>
       <p className='brandstof'></p>
-      <p className='eerst_volgende_onderhoud'></p>
-      <p className='apk'></p>
       <p className='kilometerstand'></p>
-      <p className='onderhoud_bij_aantal_km'></p>
+
+      <div className='onderhoudscontainer'>
+        <h3 className='eerst_volgende_onderhoud'></h3>
+        <p>Staat de kilometerstand (bijna) op:</p>
+        <h3 className='onderhoud_bij_aantal_km'></h3>
+        <button>Ja</button>
+      </div>
+
+      <div className='apkcontainer'>
+        <p>
+          De APK van jouw auto verloopt pas over <span className='apk'></span>
+          dagen.
+        </p>
+      </div>
     </>
   );
 }

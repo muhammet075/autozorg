@@ -131,17 +131,22 @@ function Kenteken() {
 
     let kmstand = document.querySelector(".huidigeKilometerstand").value;
 
-    console.log("kmstand " + kmstand);
+    if (laatsteSoortOnderhoud === "kleinebeurt") {
+      kentekendata["eerst_volgende_onderhoud"] = "grotebeurt";
+    } else {
+      kentekendata["eerst_volgende_onderhoud"] = "kleinebeurt";
+    }
 
-    let hm = Number(laatsteKmStand) + 15000;
-    console.log("hm" + hm);
+    const huidigeMinonderhoud = Number(kmstand) - Number(laatsteKmStand);
+    const overHoeveelKm = huidigeMinonderhoud - 20000;
 
-    let nieuwkmstand = hm - Number(kmstand);
+    kentekendata["onderhoud_bij_aantal_km"] = Number(kmstand) - overHoeveelKm;
 
-    console.log("nieuwkmstand " + nieuwkmstand);
+    localStorage.setItem("kenteken", JSON.stringify(kentekendata));
+    let getItem = localStorage.getItem("kenteken");
 
-    kentekendata["onderhoud_bij_aantal_km"] = kmstand;
-    kentekendata["eerst_volgende_onderhoud"] = "Grote beurt";
+    console.log(JSON.parse(getItem));
+    window.location = "/dashboard";
   }
 
   return (
