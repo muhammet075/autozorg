@@ -100,3 +100,149 @@
   padding: 0 15px;
   margin: 25px auto;
 }
+
+.container3 > div > img {
+  width: 30%;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 25px;
+}
+
+.container3 > div h2 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.container3 > div h3 {
+  text-align: center;
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  font-size: 1.1em;
+}
+
+.container3 > div > section {
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  margin: auto;
+}
+
+.container3 > div > section > button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -50px;
+  border: none;
+  background: none;
+  margin-left: 10px;
+  display: block;
+  cursor: pointer;
+}
+
+.container3 > div > p:last-of-type {
+  margin: 50px 0;
+  text-align: center;
+}
+
+.container4 > div {
+  width: 100%;
+  padding: 0 15px;
+  margin: 75px auto;
+  text-align: center;
+}
+
+.container4 > div > section {
+  position: relative;
+}
+
+.container4 > div > section > label {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  margin: auto;
+  height: fit-content;
+  font-weight: 700;
+  color: #5b5b5b;
+}
+
+.container5 > div {
+  width: 100%;
+  padding: 0 15px;
+  margin: 75px auto 40px auto;
+  text-align: center;
+}
+
+.container5 > section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container5 > section > button {
+  background-color: #0c79dd;
+  border: none;
+  width: 120px;
+  padding: 20px 0;
+  margin: 0 10px;
+  color: #ffff;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.onderhoudbekend > div {
+  width: 100%;
+  padding: 0 15px;
+  margin: 75px auto 40px auto;
+  text-align: center;
+}
+
+.onderhoudbekend > div > section:first-of-type {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.onderhoudbekend > div > section:first-of-type > label {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  margin: auto;
+  height: fit-content;
+  font-weight: 700;
+  color: #5b5b5b;
+}
+
+.onderhoudbekend > div > section:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: auto;
+  margin-top: 10px;
+  width: 90%;
+}
+
+.onderhoudbekend > div > section:last-child span {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.onderhoudbekend > div > section:last-child span input {
+  margin-right: 5px;
+}
+
+.datumcontainer > div {
+  width: 100%;
+  padding: 0 15px;
+  margin: 75px auto 40px auto;
+  text-align: center;
+}

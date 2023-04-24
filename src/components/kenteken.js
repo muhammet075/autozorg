@@ -1,4 +1,7 @@
 import styles from "../styles/kenteken.module.css";
+import Image from "next/image";
+import deleteIco from "../assets/icons/delete.svg";
+import backIco from "../assets/icons/back.svg";
 import { useEffect } from "react";
 
 function Kenteken() {
@@ -52,6 +55,9 @@ function Kenteken() {
         document.querySelector(".container2").classList.add("displaynone");
         document.querySelector(".container3").classList.remove("displaynone");
 
+        document.querySelector(".merklogo").src =
+          "/carlogos/" + kentekendata.merk.toLowerCase() + ".png";
+
         document.querySelector(".merknaam").innerHTML = kentekendata.merk;
         document.querySelector(".handelsnaam").innerHTML =
           kentekendata.handelsbenaming;
@@ -68,6 +74,10 @@ function Kenteken() {
   function thirdButton() {
     document.querySelector(".container3").classList.add("displaynone");
     document.querySelector(".container4").classList.remove("displaynone");
+
+    document.querySelector(".kentekenheaderh1").innerHTML =
+      kentekendata.kenteken;
+    document.querySelector(".kentekenheaderh1").classList.add("kentekenstyle");
 
     console.log(kentekendata);
   }
@@ -149,6 +159,64 @@ function Kenteken() {
     window.location = "/dashboard";
   }
 
+  function deleteKenteken() {
+    document.querySelector(".container1").classList.add("displaynone");
+    document.querySelector(".container3").classList.add("displaynone");
+    document.querySelector(".container4").classList.add("displaynone");
+    document.querySelector(".container5").classList.add("displaynone");
+    document.querySelector(".container2").classList.remove("displaynone");
+
+    document.querySelector(".kentekenheaderh1").innerHTML =
+      "Wat is jouw kenteken?";
+    document
+      .querySelector(".kentekenheaderh1")
+      .classList.remove("kentekenstyle");
+
+    document.querySelector(".kentekeninput").value = "";
+  }
+
+  function firstBack() {
+    document.querySelector(".container1").classList.remove("displaynone");
+    document.querySelector(".container2").classList.add("displaynone");
+  }
+
+  function secondBack() {
+    document.querySelector(".container2").classList.remove("displaynone");
+    document.querySelector(".container3").classList.add("displaynone");
+    document.querySelector(".kentekeninput").value = "";
+  }
+
+  function thirdBack() {
+    document.querySelector(".container3").classList.remove("displaynone");
+    document.querySelector(".container4").classList.add("displaynone");
+
+    document.querySelector(".kentekenheaderh1").innerHTML =
+      "Wat is jouw kenteken?";
+    document
+      .querySelector(".kentekenheaderh1")
+      .classList.remove("kentekenstyle");
+  }
+
+  function fourthBack() {
+    document.querySelector(".container4").classList.remove("displaynone");
+    document.querySelector(".container5").classList.add("displaynone");
+  }
+
+  function fifthBack() {
+    document.querySelector(".container5").classList.remove("displaynone");
+    document.querySelector(".onderhoudbekend").classList.add("displaynone");
+  }
+
+  function sixtBack() {
+    document.querySelector(".onderhoudbekend").classList.remove("displaynone");
+    document.querySelector(".datumcontainer").classList.add("displaynone");
+  }
+
+  function seventhBack() {
+    document.querySelector(".container5").classList.remove("displaynone");
+    document.querySelector(".onderhoudonbekend").classList.add("displaynone");
+  }
+
   return (
     <div>
       <div className={styles.kentekenheader}>
@@ -187,6 +255,9 @@ function Kenteken() {
       </div>
 
       <div className={styles.container2 + " " + "container2 displaynone"}>
+        <button className='backbutton' onClick={firstBack}>
+          <Image src={backIco} alt='Terug icoon' />
+        </button>
         <div>
           <section>
             <div>
@@ -207,14 +278,23 @@ function Kenteken() {
       </div>
 
       <div className={styles.container3 + " " + "container3 displaynone"}>
+        <button className='backbutton' onClick={secondBack}>
+          <Image src={backIco} alt='Terug icoon' />
+        </button>
         <div>
-          <p>MERK IMG</p>
+          <img className='merklogo' alt='Logo van de automerk' />
           <h2 className='merknaam'></h2>
           <h3 className='handelsnaam'></h3>
           <section>
-            <p className='kentekendata'></p>
+            <p className='kentekendata kentekenstyle'></p>
+            <button onClick={deleteKenteken}>
+              <Image src={deleteIco} />
+            </button>
           </section>
-          <p>Als dit de juiste auto is, klik dan op de onderstaande knop.</p>
+          <p>
+            Als dit jouw auto is, klik dan op de onderstaande knop om verder te
+            gaan.
+          </p>
         </div>
         <button onClick={thirdButton} className={styles.button}>
           Kenteken toevoegen
@@ -222,13 +302,20 @@ function Kenteken() {
       </div>
 
       <div className={styles.container4 + " " + "container4 displaynone"}>
+        <button className='backbutton' onClick={thirdBack}>
+          <Image src={backIco} alt='Terug icoon' />
+        </button>
         <div>
           <p>Wat is de huidige kilometerstand?</p>
-          <input
-            type='text'
-            placeholder='Bijv: 125.000 KM'
-            className='huidigeKilometerstand'
-          ></input>
+          <section>
+            <input
+              type='text'
+              placeholder='Bijv: 125.000'
+              className='huidigeKilometerstand graytextinput'
+              id='huidigeKilometerstand'
+            ></input>
+            <label for='huidigeKilometerstand'>KM</label>
+          </section>
         </div>
         <button onClick={fourthButton} className={styles.button}>
           Volgende
@@ -236,54 +323,73 @@ function Kenteken() {
       </div>
 
       <div className={styles.container5 + " " + "container5 displaynone"}>
+        <button className='backbutton' onClick={fourthBack}>
+          <Image src={backIco} alt='Terug icoon' />
+        </button>
         <div>
           <p>
             Weet je wanneer de laatst uitgevoerde onderhoudsbeurt is uitgevoerd?
           </p>
         </div>
-        <button
-          onClick={laatsteOnderhoudBekend}
-          className={styles.onderhoudknop}
-        >
-          Ja
-        </button>
-        <button
-          onClick={laatsteOnderhoudOnbekend}
-          className={styles.onderhoudknop}
-        >
-          Nee
-        </button>
+        <section>
+          <button
+            onClick={laatsteOnderhoudBekend}
+            className={styles.onderhoudknop}
+          >
+            Ja
+          </button>
+          <button
+            onClick={laatsteOnderhoudOnbekend}
+            className={styles.onderhoudknop}
+          >
+            Nee
+          </button>
+        </section>
       </div>
 
       <div
         className={styles.onderhoudbekend + " " + "onderhoudbekend displaynone"}
       >
+        <button className='backbutton' onClick={fifthBack}>
+          <Image src={backIco} alt='Terug icoon' />
+        </button>
         <div>
           <p>Wat was de kilometerstand van de laatste onderhoudsbeurt?</p>
-          <input
-            type='text'
-            className='kmstandonderhoud'
-            placeholder='Bijv: 80.000 km'
-          ></input>
+          <section>
+            <input
+              type='text'
+              className='kmstandonderhoud graytextinput'
+              id='kmstandonderhoud'
+              placeholder='Bijv: 80.000'
+            ></input>
+            <label for='kmstandonderhoud'>KM</label>
+          </section>
+
           <br />
 
           <p>Was het een grote of kleine onderhoudsbeurt?</p>
 
-          <input
-            type='radio'
-            id='kleinebeurtradio'
-            name='onderhoudsradio'
-            value='kleinebeurt'
-          />
-          <label for='kleinebeurtradio'>Kleine onderhoudsbeurt</label>
+          <section>
+            <span>
+              <input
+                type='radio'
+                id='kleinebeurtradio'
+                name='onderhoudsradio'
+                value='kleinebeurt'
+              />
+              <label for='kleinebeurtradio'>Klein</label>
+            </span>
 
-          <input
-            type='radio'
-            id='grotebeurtradio'
-            name='onderhoudsradio'
-            value='grotebeurt'
-          />
-          <label for='grotebeurtradio'>Grote onderhoudsbeurt</label>
+            <span>
+              <input
+                type='radio'
+                id='grotebeurtradio'
+                name='onderhoudsradio'
+                value='grotebeurt'
+              />
+              <label for='grotebeurtradio'>Groot</label>
+            </span>
+          </section>
         </div>
         <button onClick={onderhoudbekend} className={styles.button}>
           Volgende
@@ -293,11 +399,14 @@ function Kenteken() {
       <div
         className={styles.datumcontainer + " " + "datumcontainer displaynone"}
       >
+        <button className='backbutton' onClick={sixtBack}>
+          <Image src={backIco} alt='Terug icoon' />
+        </button>
         <div>
           <p>Wat was de datum van de laatst uitgevoerd beurt?</p>
           <input
             type='date'
-            className='onderhoudsdatum'
+            className='onderhoudsdatum graytextinput'
             placeholder='Bijv: 80.000 km'
           ></input>
           <br />
@@ -312,6 +421,9 @@ function Kenteken() {
           styles.onderhoudonbekend + " " + "onderhoudonbekend displaynone"
         }
       >
+        <button className='backbutton' onClick={seventhBack}>
+          <Image src={backIco} alt='Terug icoon' />
+        </button>
         <div>
           <p>
             Omdat je de laatst uitgevoerde onderhoudsbeurt niet weet adviseren
