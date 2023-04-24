@@ -87,8 +87,6 @@ function Kenteken() {
 
   function fourthButton() {
     if (document.querySelector(".huidigeKilometerstand").value === "") {
-      console.log("bos");
-
       document
         .querySelector(".huidigekmsection")
         .classList.add("huidigekmsectionerror");
@@ -156,14 +154,17 @@ function Kenteken() {
 
       document.querySelector(".radiossection").classList.add("errorstate");
     } else {
-      if (
-        document.querySelector(".kmstandonderhoud").value >
+      const kmstandonderhoud = Number(
         document.querySelector(".huidigeKilometerstand").value
-      ) {
+      );
+      const huidigeKilometerstand = Number(
+        document.querySelector(".kmstandonderhoud").value
+      );
+
+      if (huidigeKilometerstand > kmstandonderhoud) {
         console.log(
           "laatste onderhoud km kan niet groter zijn dan huidige kmstand"
         );
-
         document
           .querySelector(".kmstandonderhoudsection")
           .classList.add("kmstandgrotererror");
@@ -173,7 +174,6 @@ function Kenteken() {
           .querySelector(".datumcontainer")
           .classList.remove("displaynone");
 
-        laatsteKmStand = document.querySelector(".kmstandonderhoud").value;
         laatsteSoortOnderhoud = document.querySelector(
           'input[name="onderhoudsradio"]:checked'
         ).value;
@@ -182,6 +182,8 @@ function Kenteken() {
   }
 
   function onderhoudBekendAfronden() {
+    laatsteKmStand = document.querySelector(".kmstandonderhoud").value;
+
     if (document.querySelector(".onderhoudsdatum").value === "") {
       console.log("error");
 
@@ -204,10 +206,23 @@ function Kenteken() {
         kentekendata["eerst_volgende_onderhoud"] = "kleinebeurt";
       }
 
-      const huidigeMinonderhoud = Number(kmstand) - Number(laatsteKmStand);
-      const overHoeveelKm = huidigeMinonderhoud - 20000;
+      const tussenOnderhoud = 15000;
 
-      kentekendata["onderhoud_bij_aantal_km"] = Number(kmstand) - overHoeveelKm;
+      const verschilKm = Number(kmstand) - Number(laatsteKmStand);
+
+      if (verschilKm < tussenOnderhoud) {
+        console.log("minder dan 20000");
+
+        kentekendata["onderhoud_bij_aantal_km"] =
+          Number(kmstand) + tussenOnderhoud;
+
+        kentekendata["onderhoud_nu_nodig"] = "nee";
+      } else {
+        console.log("meer dan 20000");
+
+        kentekendata["onderhoud_bij_aantal_km"] = Number(kmstand);
+        kentekendata["onderhoud_nu_nodig"] = "ja";
+      }
 
       localStorage.setItem("kenteken", JSON.stringify(kentekendata));
       let getItem = localStorage.getItem("kenteken");
