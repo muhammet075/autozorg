@@ -177,7 +177,7 @@ body {
 }
 
 .datumcontainerinner.errorstate::after {
-  content: "Voer een geldig kilometerstand in";
+  content: "Voer een geldig datum in";
   position: absolute;
   bottom: -10px;
   left: 0;

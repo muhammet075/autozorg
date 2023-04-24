@@ -5,6 +5,14 @@ import backIco from "../assets/icons/back.svg";
 import { useEffect } from "react";
 
 function Kenteken() {
+  useEffect(() => {
+    let getItem = localStorage.getItem("kenteken");
+    let data = JSON.parse(getItem);
+    if (data != null) {
+      window.location = "/dashboard";
+    }
+  }, []);
+
   let kentekendata;
   let laatsteKmStand;
   let laatsteSoortOnderhoud;
@@ -43,6 +51,9 @@ function Kenteken() {
           kenteken: jsondata[0].kenteken,
           handelsbenaming: jsondata[0].handelsbenaming,
           merk: jsondata[0].merk,
+          cilinderinhoud: jsondata[0].cilinderinhoud,
+          datum_eerste_toelating: jsondata[0].datum_eerste_toelating,
+          wa_verzekerd: jsondata[0].wam_verzekerd,
           apk_datum: jsondata[0].vervaldatum_apk,
           brandstof: jsondatabrandstof[0].brandstof_omschrijving,
         };
@@ -51,7 +62,9 @@ function Kenteken() {
         document.querySelector(".container3").classList.remove("displaynone");
 
         document.querySelector(".merklogo").src =
-          "/carlogos/" + kentekendata.merk.toLowerCase() + ".png";
+          "/carlogos/" +
+          kentekendata.merk.toLowerCase().replace(/ /g, "_") +
+          ".png";
 
         document.querySelector(".merknaam").innerHTML = kentekendata.merk;
         document.querySelector(".handelsnaam").innerHTML =
@@ -118,6 +131,8 @@ function Kenteken() {
   }
 
   function onderhoudOnbekendButton() {
+    kentekendata["laatst_onderhouds_datum"] = "Onbekend";
+
     localStorage.setItem("kenteken", JSON.stringify(kentekendata));
     let getItem = localStorage.getItem("kenteken");
 
@@ -192,6 +207,9 @@ function Kenteken() {
         .classList.add("errorstate");
     } else {
       laatsteSoortOnderhoudDatum =
+        document.querySelector(".onderhoudsdatum").value;
+
+      kentekendata["laatst_onderhouds_datum"] =
         document.querySelector(".onderhoudsdatum").value;
 
       console.log(

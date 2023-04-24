@@ -8,7 +8,7 @@ function Header() {
     <header className={styles.header}>
       <div>
         <Link href='/'>
-          <Image src={Logo} alt='Logo of Tickety' priority />
+          <Image src={Logo} alt='Logo van AutoZorg' priority />
         </Link>
       </div>
     </header>
