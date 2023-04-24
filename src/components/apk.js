@@ -26,7 +26,7 @@ function Apk() {
     document.querySelector(".apkdagen").innerHTML = remainingDays;
     document.querySelector(".apkdagen2").innerHTML = remainingDays;
 
-    if (remainingDays < 30) {
+    if (remainingDays < 60) {
       document.querySelector(".apkcontent").classList.add("displaynone");
       document.querySelector(".apkverloopt").classList.remove("displaynone");
       document.querySelector(".apklink").classList.remove("displaynone");
@@ -35,23 +35,36 @@ function Apk() {
   }, []);
 
   return (
-    <div className={styles.apk + " " + "apkgeldig"}>
-      <div>
-        <h2>APK</h2>
-        <p className='apkcontent'>
-          De APK van jouw auto verloopt pas over{" "}
-          <span className='apkdagen'></span> dagen.
-        </p>
+    <>
+      <div className={styles.apk + " " + "apkgeldig"}>
+        <div>
+          <h2>APK</h2>
+          <p className='apkcontent'>
+            De APK van jouw auto verloopt pas over{" "}
+            <span className='apkdagen'></span> dagen.
+          </p>
 
-        <p className='displaynone apkverloopt'>
-          De APK van jouw auto verloopt binnen{" "}
-          <span className='apkdagen2'></span> dagen. Maak direct een afspraak!
-        </p>
-        <Link className='apklink displaynone' href='/apk'>
-          Afspraak inplannen
-        </Link>
+          <p className='displaynone apkverloopt'>
+            De APK van jouw auto verloopt binnen{" "}
+            <span className='apkdagen2'></span> dagen. Maak direct een afspraak!
+          </p>
+          <Link className='apklink displaynone' href='/apk'>
+            Afspraak inplannen
+          </Link>
+        </div>
       </div>
-    </div>
+
+      <div className={styles.pechhulp}>
+        <div>
+          <h2>Pechhulp</h2>
+          <p>
+            Start jouw auto niet meer of ben je misschien tegen een paaltje aan
+            gereden? Schakel direct hulp in!
+          </p>
+          <Link href='/pechhulp'>Hulp inschakelen</Link>
+        </div>
+      </div>
+    </>
   );
 }
 

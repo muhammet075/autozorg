@@ -1,20 +1,30 @@
-.apk {
+.apk,
+.pechhulp {
   padding: 0 15px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 .apk > div {
   background-color: #dcffe4;
   border: 1px solid #247200;
   border-radius: 5px;
-  padding: 25px;
+  padding: 20px;
 }
 
-.apk > div h2 {
+.pechhulp > div {
+  background-color: #ffd18b;
+  border: 1px solid #c38144;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.apk > div h2,
+.pechhulp > div h2 {
   margin-bottom: 10px;
 }
 
-.apk > div p {
+.apk > div p,
+.pechhulp > div p {
   font-size: 0.9em;
   margin-bottom: 5px;
 }
