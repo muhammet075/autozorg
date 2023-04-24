@@ -40,13 +40,17 @@
 
 .container1 > div p {
   margin: 25px 0;
-  text-align: center;
 }
 
 .container2 > div {
   width: 100%;
   padding: 0 15px;
-  margin: 75px auto 0 auto;
+  margin: 50px auto 0 auto;
+}
+
+.container2 > div > p {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .container2 > div section {
@@ -246,4 +250,15 @@
   margin: 75px auto 40px auto;
   text-align: center;
   position: relative;
+}
+
+.onderhoudonbekend > div {
+  width: 100%;
+  padding: 0 15px;
+  margin: 50px auto;
+  position: relative;
+}
+
+.onderhoudonbekend > div p {
+  margin-bottom: 25px;
 }

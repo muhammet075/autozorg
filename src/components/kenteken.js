@@ -47,11 +47,6 @@ function Kenteken() {
           brandstof: jsondatabrandstof[0].brandstof_omschrijving,
         };
 
-        // localStorage.setItem("kenteken", JSON.stringify(kentekendata[0]));
-
-        // let getItem = localStorage.getItem("kenteken");
-        // console.log(JSON.parse(getItem));
-
         document.querySelector(".container2").classList.add("displaynone");
         document.querySelector(".container3").classList.remove("displaynone");
 
@@ -258,6 +253,8 @@ function Kenteken() {
     document
       .querySelector(".kentekenheaderh1")
       .classList.remove("kentekenstyle");
+
+    document.querySelector(".huidigeKilometerstand").value = "";
   }
 
   function fourthBack() {
@@ -362,6 +359,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
+          <p>Vul jouw kentekenplaat hieronder in.</p>
           <section className='firstkentekeninput'>
             <div>
               <p>NL</p>
