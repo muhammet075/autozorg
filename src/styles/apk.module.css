@@ -1,0 +1,20 @@
+.apk {
+  padding: 0 15px;
+  margin-bottom: 50px;
+}
+
+.apk > div {
+  background-color: #dcffe4;
+  border: 1px solid #247200;
+  border-radius: 5px;
+  padding: 25px;
+}
+
+.apk > div h2 {
+  margin-bottom: 10px;
+}
+
+.apk > div p {
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}

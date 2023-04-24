@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Autodetails from "@/components/autodetails";
+import Apk from "@/components/apk";
 
 export default function Dashboard() {
   useEffect(() => {
@@ -14,6 +15,8 @@ export default function Dashboard() {
   return (
     <>
       <Autodetails />
+      <Apk />
+
       <p className='kenteken'></p>
       <p>
         <span className='merk'></span>
