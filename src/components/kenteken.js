@@ -64,10 +64,14 @@ function Kenteken() {
         document.querySelector(".kentekendata").innerHTML =
           kentekendata.kenteken;
       } catch (e) {
-        console.log("error weer");
+        document
+          .querySelector(".firstkentekeninput")
+          .classList.add("kentekeninputerror");
       }
     } else {
-      console.log("Error state: Voer een geldige kenteken in");
+      document
+        .querySelector(".firstkentekeninput")
+        .classList.add("kentekeninputerror");
     }
   }
 
@@ -80,21 +84,33 @@ function Kenteken() {
     document.querySelector(".kentekenheaderh1").classList.add("kentekenstyle");
 
     console.log(kentekendata);
+
+    document
+      .querySelector(".huidigekmsection")
+      .classList.remove("huidigekmsectionerror");
   }
 
   function fourthButton() {
-    document.querySelector(".container4").classList.add("displaynone");
-    document.querySelector(".container5").classList.remove("displaynone");
+    if (document.querySelector(".huidigeKilometerstand").value === "") {
+      console.log("bos");
 
-    console.log(document.querySelector(".huidigeKilometerstand").value);
+      document
+        .querySelector(".huidigekmsection")
+        .classList.add("huidigekmsectionerror");
+    } else {
+      document.querySelector(".container4").classList.add("displaynone");
+      document.querySelector(".container5").classList.remove("displaynone");
 
-    let kmstand = document.querySelector(".huidigeKilometerstand").value;
+      console.log(document.querySelector(".huidigeKilometerstand").value);
 
-    JSON.parse(kmstand);
+      let kmstand = document.querySelector(".huidigeKilometerstand").value;
 
-    kentekendata["kilometerstand"] = kmstand;
+      JSON.parse(kmstand);
 
-    console.log(kentekendata);
+      kentekendata["kilometerstand"] = kmstand;
+
+      console.log(kentekendata);
+    }
   }
 
   function laatsteOnderhoudOnbekend() {
@@ -122,41 +138,88 @@ function Kenteken() {
   }
 
   function onderhoudbekend() {
-    document.querySelector(".onderhoudbekend").classList.add("displaynone");
-    document.querySelector(".datumcontainer").classList.remove("displaynone");
+    if (
+      document.querySelector(".kmstandonderhoud").value === "" &&
+      document.querySelector('input[name="onderhoudsradio"]:checked') == null
+    ) {
+      console.log("allebei niet!");
 
-    laatsteKmStand = document.querySelector(".kmstandonderhoud").value;
-    laatsteSoortOnderhoud = document.querySelector(
-      'input[name="onderhoudsradio"]:checked'
-    ).value;
+      document
+        .querySelector(".kmstandonderhoudsection")
+        .classList.add("errorstate");
+      document.querySelector(".radiossection").classList.add("errorstate");
+    } else if (document.querySelector(".kmstandonderhoud").value === "") {
+      console.log("alleen km stand leeg");
+
+      document
+        .querySelector(".kmstandonderhoudsection")
+        .classList.add("errorstate");
+    } else if (
+      document.querySelector('input[name="onderhoudsradio"]:checked') == null
+    ) {
+      console.log("alleen radio niet aangevingt");
+
+      document.querySelector(".radiossection").classList.add("errorstate");
+    } else {
+      if (
+        document.querySelector(".kmstandonderhoud").value >
+        document.querySelector(".huidigeKilometerstand").value
+      ) {
+        console.log(
+          "laatste onderhoud km kan niet groter zijn dan huidige kmstand"
+        );
+
+        document
+          .querySelector(".kmstandonderhoudsection")
+          .classList.add("kmstandgrotererror");
+      } else {
+        document.querySelector(".onderhoudbekend").classList.add("displaynone");
+        document
+          .querySelector(".datumcontainer")
+          .classList.remove("displaynone");
+
+        laatsteKmStand = document.querySelector(".kmstandonderhoud").value;
+        laatsteSoortOnderhoud = document.querySelector(
+          'input[name="onderhoudsradio"]:checked'
+        ).value;
+      }
+    }
   }
 
   function onderhoudBekendAfronden() {
-    laatsteSoortOnderhoudDatum =
-      document.querySelector(".onderhoudsdatum").value;
+    if (document.querySelector(".onderhoudsdatum").value === "") {
+      console.log("error");
 
-    console.log(
-      laatsteSoortOnderhoudDatum + laatsteKmStand + laatsteSoortOnderhoud
-    );
-
-    let kmstand = document.querySelector(".huidigeKilometerstand").value;
-
-    if (laatsteSoortOnderhoud === "kleinebeurt") {
-      kentekendata["eerst_volgende_onderhoud"] = "grotebeurt";
+      document
+        .querySelector(".datumcontainerinner")
+        .classList.add("errorstate");
     } else {
-      kentekendata["eerst_volgende_onderhoud"] = "kleinebeurt";
+      laatsteSoortOnderhoudDatum =
+        document.querySelector(".onderhoudsdatum").value;
+
+      console.log(
+        laatsteSoortOnderhoudDatum + laatsteKmStand + laatsteSoortOnderhoud
+      );
+
+      let kmstand = document.querySelector(".huidigeKilometerstand").value;
+
+      if (laatsteSoortOnderhoud === "kleinebeurt") {
+        kentekendata["eerst_volgende_onderhoud"] = "grotebeurt";
+      } else {
+        kentekendata["eerst_volgende_onderhoud"] = "kleinebeurt";
+      }
+
+      const huidigeMinonderhoud = Number(kmstand) - Number(laatsteKmStand);
+      const overHoeveelKm = huidigeMinonderhoud - 20000;
+
+      kentekendata["onderhoud_bij_aantal_km"] = Number(kmstand) - overHoeveelKm;
+
+      localStorage.setItem("kenteken", JSON.stringify(kentekendata));
+      let getItem = localStorage.getItem("kenteken");
+
+      console.log(JSON.parse(getItem));
+      window.location = "/dashboard";
     }
-
-    const huidigeMinonderhoud = Number(kmstand) - Number(laatsteKmStand);
-    const overHoeveelKm = huidigeMinonderhoud - 20000;
-
-    kentekendata["onderhoud_bij_aantal_km"] = Number(kmstand) - overHoeveelKm;
-
-    localStorage.setItem("kenteken", JSON.stringify(kentekendata));
-    let getItem = localStorage.getItem("kenteken");
-
-    console.log(JSON.parse(getItem));
-    window.location = "/dashboard";
   }
 
   function deleteKenteken() {
@@ -205,16 +268,56 @@ function Kenteken() {
   function fifthBack() {
     document.querySelector(".container5").classList.remove("displaynone");
     document.querySelector(".onderhoudbekend").classList.add("displaynone");
+    document
+      .querySelector(".kmstandonderhoudsection")
+      .classList.remove("errorstate");
+    document.querySelector(".radiossection").classList.remove("errorstate");
+    document
+      .querySelector(".kmstandonderhoudsection")
+      .classList.remove("kmstandgrotererror");
+
+    document.querySelector(".kmstandonderhoud").value = "";
   }
 
   function sixtBack() {
     document.querySelector(".onderhoudbekend").classList.remove("displaynone");
     document.querySelector(".datumcontainer").classList.add("displaynone");
+    document
+      .querySelector(".datumcontainerinner")
+      .classList.remove("errorstate");
   }
 
   function seventhBack() {
     document.querySelector(".container5").classList.remove("displaynone");
     document.querySelector(".onderhoudonbekend").classList.add("displaynone");
+  }
+
+  function removeKentekeninputError() {
+    document
+      .querySelector(".firstkentekeninput")
+      .classList.remove("kentekeninputerror");
+  }
+
+  function removeHuidigekmError() {
+    document
+      .querySelector(".huidigekmsection")
+      .classList.remove("huidigekmsectionerror");
+  }
+
+  function removeKmstandOnderhoudError() {
+    document
+      .querySelector(".kmstandonderhoudsection")
+      .classList.remove("errorstate");
+    document.querySelector(".radiossection").classList.remove("errorstate");
+    document
+      .querySelector(".kmstandonderhoudsection")
+      .classList.remove("kmstandgrotererror");
+  }
+
+  function removeDateError() {
+    document
+      .querySelector(".datumcontainerinner")
+      .classList.remove("errorstate");
   }
 
   return (
@@ -259,7 +362,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
-          <section>
+          <section className='firstkentekeninput'>
             <div>
               <p>NL</p>
             </div>
@@ -268,6 +371,7 @@ function Kenteken() {
                 type='text'
                 maxLength={6}
                 className='kentekeninput'
+                onClick={removeKentekeninputError}
               ></input>
             </div>
           </section>
@@ -307,12 +411,14 @@ function Kenteken() {
         </button>
         <div>
           <p>Wat is de huidige kilometerstand?</p>
-          <section>
+          <section className='huidigekmsection'>
             <input
-              type='text'
+              type='number'
               placeholder='Bijv: 125.000'
               className='huidigeKilometerstand graytextinput'
+              maxlength='6'
               id='huidigeKilometerstand'
+              onClick={removeHuidigekmError}
             ></input>
             <label for='huidigeKilometerstand'>KM</label>
           </section>
@@ -355,12 +461,14 @@ function Kenteken() {
         </button>
         <div>
           <p>Wat was de kilometerstand van de laatste onderhoudsbeurt?</p>
-          <section>
+          <section className='kmstandonderhoudsection'>
             <input
-              type='text'
+              type='number'
               className='kmstandonderhoud graytextinput'
               id='kmstandonderhoud'
+              maxlength='6'
               placeholder='Bijv: 80.000'
+              onClick={removeKmstandOnderhoudError}
             ></input>
             <label for='kmstandonderhoud'>KM</label>
           </section>
@@ -369,7 +477,7 @@ function Kenteken() {
 
           <p>Was het een grote of kleine onderhoudsbeurt?</p>
 
-          <section>
+          <section className='radiossection'>
             <span>
               <input
                 type='radio'
@@ -402,12 +510,12 @@ function Kenteken() {
         <button className='backbutton' onClick={sixtBack}>
           <Image src={backIco} alt='Terug icoon' />
         </button>
-        <div>
+        <div className='datumcontainerinner'>
           <p>Wat was de datum van de laatst uitgevoerd beurt?</p>
           <input
             type='date'
             className='onderhoudsdatum graytextinput'
-            placeholder='Bijv: 80.000 km'
+            onClick={removeDateError}
           ></input>
           <br />
         </div>
