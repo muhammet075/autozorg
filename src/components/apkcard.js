@@ -1,13 +1,11 @@
-import styles from "../styles/apk.module.css";
+import styles from "../styles/apkcard.module.css";
 import Link from "next/link";
 import { useEffect } from "react";
 
-function Apk() {
+function Apkcard() {
   useEffect(() => {
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
-
-    console.log(data.apk_datum);
 
     function daysRemaining(dateString) {
       const year = dateString.slice(0, 4);
@@ -20,9 +18,7 @@ function Apk() {
       return days;
     }
 
-    // Voorbeeldgebruik:
     const remainingDays = daysRemaining(data.apk_datum);
-    console.log(`${remainingDays} dagen over`);
     document.querySelector(".apkdagen").innerHTML = remainingDays;
     document.querySelector(".apkdagen2").innerHTML = remainingDays;
 
@@ -36,7 +32,7 @@ function Apk() {
 
   return (
     <>
-      <div className={styles.apk + " " + "apkgeldig"}>
+      <div className={styles.apkcard + " " + "apkgeldig"}>
         <div>
           <h2>APK</h2>
           <p className='apkcontent'>
@@ -68,4 +64,4 @@ function Apk() {
   );
 }
 
-export default Apk;
+export default Apkcard;

@@ -1,14 +1,16 @@
-.apk,
+.apkcard,
 .pechhulp {
   padding: 0 15px;
   margin-bottom: 25px;
 }
 
-.apk > div {
+.apkcard > div {
   background-color: #dcffe4;
   border: 1px solid #247200;
   border-radius: 5px;
   padding: 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .pechhulp > div {
@@ -16,15 +18,22 @@
   border: 1px solid #c38144;
   border-radius: 5px;
   padding: 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.apk > div h2,
+.apkcard > div h2,
 .pechhulp > div h2 {
   margin-bottom: 10px;
 }
 
-.apk > div p,
+.apkcard > div p,
 .pechhulp > div p {
   font-size: 0.9em;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.apkcard > div a,
+.pechhulp > div a {
+  width: 75%;
 }

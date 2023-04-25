@@ -127,7 +127,7 @@ function Kenteken() {
 
     let kmstand = document.querySelector(".huidigeKilometerstand").value;
     kentekendata["onderhoud_bij_aantal_km"] = kmstand;
-    kentekendata["eerst_volgende_onderhoud"] = "Grote beurt";
+    kentekendata["eerst_volgende_onderhoud"] = "Grote onderhoudsbeurt";
   }
 
   function onderhoudOnbekendButton() {
@@ -219,9 +219,9 @@ function Kenteken() {
       let kmstand = document.querySelector(".huidigeKilometerstand").value;
 
       if (laatsteSoortOnderhoud === "kleinebeurt") {
-        kentekendata["eerst_volgende_onderhoud"] = "grotebeurt";
+        kentekendata["eerst_volgende_onderhoud"] = "Grote onderhoudsbeurt";
       } else {
-        kentekendata["eerst_volgende_onderhoud"] = "kleinebeurt";
+        kentekendata["eerst_volgende_onderhoud"] = "Kleine onderhoudsbeurt";
       }
 
       const tussenOnderhoud = 15000;
@@ -234,12 +234,12 @@ function Kenteken() {
         kentekendata["onderhoud_bij_aantal_km"] =
           Number(kmstand) + tussenOnderhoud;
 
-        kentekendata["onderhoud_nu_nodig"] = "nee";
+        // kentekendata["onderhoud_nu_nodig"] = "nee";
       } else {
         console.log("meer dan 20000");
 
         kentekendata["onderhoud_bij_aantal_km"] = Number(kmstand);
-        kentekendata["onderhoud_nu_nodig"] = "ja";
+        // kentekendata["onderhoud_nu_nodig"] = "ja";
       }
 
       localStorage.setItem("kenteken", JSON.stringify(kentekendata));

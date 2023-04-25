@@ -11,6 +11,23 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+a {
+  font-weight: 500;
+  font-size: 0.85em;
+  background-color: #0c79dd;
+  border: 1px solid #0659a7;
+  color: #ffff;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  border-radius: 3px;
+  padding: 5px 15px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
 body {
   background-color: #cccccc;
 }
@@ -193,7 +210,8 @@ h2 {
   font-weight: 600;
 }
 
-.ongeldigapk > div {
+.ongeldigapk > div,
+.onderhoudnodig > div {
   background-color: #ffc8c8 !important;
   border: 1px solid #9e0000 !important;
 }
