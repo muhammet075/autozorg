@@ -1,7 +1,9 @@
+import Pechhulpstate from "@/components/pechhulpstate";
+
 export default function Pechhulp() {
   return (
     <>
-      <p>pechhulp</p>
+      <Pechhulpstate />
     </>
   );
 }

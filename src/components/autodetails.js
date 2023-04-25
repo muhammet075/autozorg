@@ -11,8 +11,6 @@ function Autodetails() {
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
 
-    console.log(data);
-
     document.querySelector(".autoimg").src =
       "/carlogos/" + data.merk.toLowerCase().replace(/ /g, "_") + ".png";
 

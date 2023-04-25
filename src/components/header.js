@@ -7,7 +7,7 @@ function Header() {
   return (
     <header className={styles.header}>
       <div>
-        <Link href='/'>
+        <Link href='/dashboard'>
           <Image src={Logo} alt='Logo van AutoZorg' priority />
         </Link>
       </div>
