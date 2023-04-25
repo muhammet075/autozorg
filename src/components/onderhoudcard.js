@@ -3,6 +3,10 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 function Onderhoudcard() {
+  function addDot(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   useEffect(() => {
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
@@ -11,7 +15,7 @@ function Onderhoudcard() {
       data.eerst_volgende_onderhoud;
 
     document.querySelector(".kmstand").innerHTML =
-      data.onderhoud_bij_aantal_km + " KM";
+      addDot(data.onderhoud_bij_aantal_km) + " KM";
 
     const kilometerstand = Number(data.kilometerstand);
     const onderhoudkm = Number(data.onderhoud_bij_aantal_km);

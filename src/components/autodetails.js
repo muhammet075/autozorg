@@ -3,6 +3,10 @@ import { useEffect } from "react";
 import Image from "next/image";
 
 function Autodetails() {
+  function addDot(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   useEffect(() => {
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
@@ -16,7 +20,9 @@ function Autodetails() {
     document.querySelector(".merk").innerHTML = data.merk;
     document.querySelector(".handelsbenaming").innerHTML =
       " " + data.handelsbenaming;
-    document.querySelector(".kilometerstand").innerHTML = data.kilometerstand;
+    document.querySelector(".kilometerstand").innerHTML = addDot(
+      data.kilometerstand
+    );
     document.querySelector(".brandstof").innerHTML = data.brandstof;
     document.querySelector(".motortype").innerHTML = parseFloat(
       (data.cilinderinhoud / 1000).toFixed(1)
