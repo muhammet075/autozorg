@@ -3,12 +3,15 @@ import { useEffect } from "react";
 import plaatsen from "../../public/plaatsen";
 import Image from "next/image";
 import locationIco from "../assets/icons/location.svg";
+import backIco from "../assets/icons/back.svg"
 
 
 function Onderhoudprogress() {
 
 let plaatsnaam;
 let garageApi; 
+let allAfspraakBtns;
+let volgnummer;
 
   useEffect(() => {
     let getItem = localStorage.getItem("kenteken");
@@ -110,28 +113,85 @@ for (let i = 0; i < Math.min(jsondata.length, 20); i++) {
 
             <div>
             <a target="_blank" href="https://www.google.nl/maps/search/${jsondata[i].straat}+${jsondata[i].huisnummer}+${jsondata[i].postcode_numeriek}${jsondata[i].postcode_alfanumeriek}/">Maps</a>
-            <a href="/afspraak">Afspraak</a>
+            <button class="afspraakbtn" value="${jsondata[i].volgnummer}">Afspraak</button>
             </div>
             </section>
             `;
 
   html += "";
   document.querySelector(".garagecontainer").innerHTML = html;
+  allAfspraakBtns = document.querySelectorAll(".afspraakbtn");
+
+  console.log(allAfspraakBtns);
+
+      for (let i = 0; i < allAfspraakBtns.length; i++) {
+        allAfspraakBtns[i].addEventListener("click", () => {
+          console.log(allAfspraakBtns[i].value);
+          volgnummer = allAfspraakBtns[i].value;
+          document.querySelector(".afspraakcontainer").classList.remove("displaynone");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+      
+
+}
 }
 
-        // for (let i = 0; i < myArray.length; i++) {
-        // }
+function afspraakSluiten(){
+  document.querySelector(".afspraakcontainer").classList.add("displaynone");
+}
+
+async function afspraakBevestigen(){
+  console.log(volgnummer);
+
+  const afspraakApi = "https://opendata.rdw.nl/resource/5k74-3jha.json?$query=SELECT%0A%20%20%60volgnummer%60%2C%0A%20%20%60naam_bedrijf%60%2C%0A%20%20%60gevelnaam%60%2C%0A%20%20%60straat%60%2C%0A%20%20%60huisnummer%60%2C%0A%20%20%60huisnummer_toevoeging%60%2C%0A%20%20%60postcode_numeriek%60%2C%0A%20%20%60postcode_alfanumeriek%60%2C%0A%20%20%60plaats%60%2C%0A%20%20%60api_bedrijf_erkenningen%60%0AWHERE%20%60volgnummer%60%20%3D%20" + volgnummer;
+
+
+
+  console.log(afspraakApi);
+
+  const response = await fetch(afspraakApi);
+  const garagedata = await response.json();
+  console.log(garagedata);
+
+  // afspraakdata = {
+    
+  // }
+
+  // localStorage.setItem("onderhoudafspraak", JSON.stringify(afspraakdata));
+  // let getItem = localStorage.getItem("onderhoudafspraak");
+
+  // console.log(JSON.parse(getItem));
 
 }
+
+
+
+     
+  function firstBack() {
+    window.location = "/dashboard"
+  }
+
+  function secondBack() {
+      location.reload();
+  }
+
+
 
   return (
     <div className={styles.onderhoud}>
       <h1 className='onderhoudh1'></h1>
 
       <div className={styles.onderhoudcontainer1 + " onderhoudcontainer1"}>
+        <button className='backbutton' onClick={firstBack}>
+          <Image src={backIco} alt='Terug icoon' />
+        </button>
         <div>
-
-          <div className={styles.locationcontainer + " locationcontainer displaynone"}>
+          <div
+            className={
+              styles.locationcontainer + " locationcontainer displaynone"
+            }
+          >
             <Image src={locationIco} alt='Locatie icoon' />
             <p>
               Huidige locatie: <span className='plaatsnaam'></span>
@@ -152,13 +212,39 @@ for (let i = 0; i < Math.min(jsondata.length, 20); i++) {
             <div></div>
           </div>
         </div>
-        <button onClick={zoekGarages} className='zoekgaragebtn displaynone'>
+        <button
+          onClick={zoekGarages}
+          className={styles.zoekgaragebtn + " zoekgaragebtn displaynone"}
+        >
           Zoek Garages
         </button>
       </div>
 
-      <div className={styles.onderhoudcontainer2 + " onderhoudcontainer2"}>
+      <div
+        className={
+          styles.onderhoudcontainer2 + " onderhoudcontainer2 displaynone"
+        }
+      >
+        <button className='backbutton' onClick={secondBack}>
+          <Image src={backIco} alt='Terug icoon' />
+        </button>
         <div className='garagecontainer'></div>
+      </div>
+
+      <div
+        className={styles.afspraakcontainer + " afspraakcontainer displaynone"}
+      >
+        <button onClick={afspraakSluiten}>X</button>
+
+        <h2>Afspraak</h2>
+
+        <p>Kies datum:</p>
+        <input type='date'></input>
+
+        <p>Kies tijd:</p>
+        <input type='time'></input>
+
+        <button onClick={afspraakBevestigen}>Afspraak Bevestigen</button>
       </div>
     </div>
   );

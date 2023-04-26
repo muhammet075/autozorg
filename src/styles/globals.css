@@ -50,12 +50,12 @@ h2 {
 
 .backbutton {
   position: absolute;
-  top: 0;
-  background: none;
-  border: none;
-  top: 40px;
-  left: 20px;
-  cursor: pointer;
+  top: 0 !important;
+  background: none !important;
+  border: none !important;
+  top: 25px !important;
+  left: 20px !important;
+  cursor: pointer !important;
 }
 
 .graytextinput {
