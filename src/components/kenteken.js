@@ -546,6 +546,7 @@ function Kenteken() {
           <p>Wat was de datum van de laatst uitgevoerd beurt?</p>
           <input
             type='date'
+            placeholder='Voer een datum in'
             className='onderhoudsdatum graytextinput'
             onClick={removeDateError}
           ></input>
