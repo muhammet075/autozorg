@@ -18,6 +18,7 @@
 }
 
 .disablescrolling{
+  overflow: -moz-scrollbars-horizontal;
   overflow-y: hidden;
 }
 
