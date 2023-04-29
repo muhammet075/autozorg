@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Header from "../components/header";
 import "@/styles/globals.css";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
 
@@ -19,12 +20,18 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <div id='app'>
-      <Header />
-      <main>
-        <Component {...pageProps} />
-      </main>
-    </div>
+    <>
+      <Head>
+        <link rel='manifest' href='/manifest.json' />
+        <meta name='theme-color' content='#0C79DD' />
+      </Head>
+      <div id='app'>
+        <Header />
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </div>
+    </>
   );
 }
 
