@@ -11,12 +11,16 @@ function Kenteken() {
     if (data != null) {
       window.location = "/dashboard";
     }
+    
+    document.querySelector("header").classList.add("removeboxshadow");
+  
   }, []);
 
   let kentekendata;
   let laatsteKmStand;
   let laatsteSoortOnderhoud;
   let laatsteSoortOnderhoudDatum;
+
 
   function firstButton() {
     document.querySelector(".container1").classList.add("displaynone");

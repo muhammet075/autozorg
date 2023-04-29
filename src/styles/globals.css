@@ -314,3 +314,7 @@ h2 {
 .spinner div {
   box-sizing: content;
 }
+
+.removeboxshadow{
+  box-shadow: none !important;
+}
