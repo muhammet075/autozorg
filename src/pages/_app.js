@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link rel='manifest' href='/manifest.json' />
         <meta name='theme-color' content='#0C79DD' />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta content='yes' name='apple-mobile-web-app-capable' />
         <meta content='yes' name='mobile-web-app-capable' />
       </Head>
