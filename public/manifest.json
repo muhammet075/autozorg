@@ -6,7 +6,7 @@
     "start_url": "/",
     "name": "AutoZorg",
     "short_name": "AutoZorg",
-    "description": "AutoZorg is de app om jou te helpen met auto zaken zoals onderhoud en APK.",
+    "description": "AutoZorg is de app om jou te helpen met auto gerelateerde zaken zoals onderhoud en APK.",
     "icons": [
         {
             "src": "/icon-192x192.png",
