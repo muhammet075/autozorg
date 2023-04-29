@@ -226,14 +226,14 @@
 }
 
 .onderhoudbekend > div input[type='radio'] { 
-     transform: scale(2); 
+     transform: scale(1.5); 
      margin-bottom: 25px;
  }
 
  .onderhoudbekend > div label{
-    font-size: 1.4em;
+    font-size: 1.2em;
     margin-bottom: 23px;
-    margin-left: 10px;
+    margin-left: 3px;
  }
 
 .onderhoudbekend > div > section:first-of-type {
@@ -255,10 +255,10 @@
 
 .onderhoudbekend > div > section:last-child {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: flex-start;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 30px;
   width: 90%;
 }
 
