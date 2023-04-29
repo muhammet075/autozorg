@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "kenteken";
-  src: url("/public/fonts/kenteken.ttf");
+  font-family: 'kenteken';
+  src: url('/fonts/kenteken.ttf') format('truetype');
   font-style: normal;
   font-display: swap;
 }
