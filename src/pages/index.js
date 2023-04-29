@@ -8,6 +8,8 @@ export default function Home() {
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
 
+    document.querySelector("header").style.display = "none";
+
     console.log(data);
 
     if (data === null) {

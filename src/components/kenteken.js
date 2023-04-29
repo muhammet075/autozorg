@@ -10,10 +10,7 @@ function Kenteken() {
     let data = JSON.parse(getItem);
     if (data != null) {
       window.location = "/dashboard";
-    }
-    
-    document.querySelector("header").classList.add("removeboxshadow");
-  
+    }  
   }, []);
 
   let kentekendata;

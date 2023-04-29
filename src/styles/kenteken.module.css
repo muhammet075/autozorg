@@ -20,7 +20,7 @@
 
 .kentekenheader {
   background-color: #0c79dd;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 2px 2px 0px, rgba(60, 64, 67, 0.15) 0px 4px 3px 1px;
 }
 
 .kentekenheader > div {
@@ -161,6 +161,11 @@
   position: relative;
 }
 
+.container4 > div p{
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
 .container4 > div > section > label {
   display: block;
   position: absolute;
@@ -186,6 +191,11 @@
   align-items: center;
 }
 
+.container5 > div p{
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
 .container5 > section > button {
   background-color: #0c79dd;
   border: none;
@@ -208,6 +218,23 @@
   margin: 75px auto 40px auto;
   text-align: center;
 }
+
+.onderhoudbekend > div p{
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.onderhoudbekend > div input[type='radio'] { 
+     transform: scale(2); 
+     margin-bottom: 25px;
+ }
+
+ .onderhoudbekend > div label{
+    font-size: 1.4em;
+    margin-bottom: 23px;
+    margin-left: 10px;
+ }
 
 .onderhoudbekend > div > section:first-of-type {
   position: relative;
@@ -238,7 +265,6 @@
 .onderhoudbekend > div > section:last-child span {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
 }
 
 .onderhoudbekend > div > section:last-child span input {
@@ -253,6 +279,15 @@
   position: relative;
 }
 
+.datumcontainer > div p{
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.datumcontainer > div input{
+  width: 100%;
+}
+
 .onderhoudonbekend > div {
   width: 100%;
   padding: 0 15px;
@@ -263,3 +298,4 @@
 .onderhoudonbekend > div p {
   margin-bottom: 25px;
 }
+
