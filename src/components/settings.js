@@ -30,7 +30,7 @@ function Settings() {
     document.querySelector(".autocard").classList.add("displaynone");
     setTimeout(function () {
         window.location = "/register"
-    }, 1000);
+    }, 500);
   }
 
   function firstBack(){

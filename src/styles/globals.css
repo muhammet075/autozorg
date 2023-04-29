@@ -1,12 +1,13 @@
 @font-face {
   font-family: "kenteken";
-  src: url("/fonts/kenteken.ttf");
+  src: url("/public/fonts/kenteken.ttf");
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {
     --app-height: 100%;
 }
-
 
 * {
   margin: 0;
