@@ -8,8 +8,8 @@ function Settings() {
   useEffect(() => {
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
-
-    console.log(data);
+    
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
     document.querySelector(".merknaam").innerHTML = data.merk + " ";
     document.querySelector(".typeauto").innerHTML = data.handelsbenaming;
