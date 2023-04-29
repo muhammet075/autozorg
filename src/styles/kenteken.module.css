@@ -286,6 +286,7 @@
 
 .datumcontainer > div input{
   width: 100%;
+  -webkit-appearance: none;
 }
 
 .onderhoudonbekend > div {
