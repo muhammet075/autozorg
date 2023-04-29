@@ -11,6 +11,7 @@ function Kenteken() {
     if (data != null) {
       window.location = "/dashboard";
     }  
+    document.querySelector("body").classList.add("disablescrolling");
   }, []);
 
   let kentekendata;

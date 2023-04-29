@@ -17,6 +17,10 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+.disablescrolling{
+  overflow-y: hidden;
+}
+
 a {
   font-weight: 500;
   font-size: 0.85em;
