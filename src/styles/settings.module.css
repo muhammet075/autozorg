@@ -1,0 +1,70 @@
+.settings{
+    padding: 15px;
+}
+
+.settings h1{
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.settings > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: #DEEFFF;
+    border: 1px solid #0C79DD;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.settings > div section:nth-of-type(1){
+    width: 25%;
+}
+
+.settings > div section:nth-of-type(2){
+    width: 65%;
+}
+
+.settings > div section img{
+    width: 100%;
+    height: auto;
+}
+
+.settings > div section:nth-of-type(2) h3:nth-of-type(1){
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.settings > div section:nth-of-type(2) h3:nth-of-type(2){
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.settings > div section:nth-of-type(2) p{
+    margin: 0;
+    margin-bottom: 25px;
+    font-size: 20px;
+    width: 130px;
+    padding: 2px 0px 2px 27px;
+}
+
+.settings > div section:nth-of-type(2) p::before{
+    width: 17px;
+}
+
+.settings > div button{
+    position: absolute;
+    border: none;
+    background: none;
+    top: -20px;
+    right: -15px;
+    cursor: pointer;
+}
+
+.settings > div button img{
+    width: 100%;
+    height: auto;
+}

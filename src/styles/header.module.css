@@ -27,3 +27,18 @@
   height: auto;
   cursor: pointer;
 }
+
+.settingsbtn{
+  position: absolute;
+  display: block;
+  top: 30px !important;
+  right: 20px !important;  
+  background: none;
+  border: none;
+  cursor: pointer !important;
+}
+
+.settingsbtn img{
+  width: 40px !important;
+  height: auto;
+}
