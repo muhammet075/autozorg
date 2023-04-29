@@ -3,6 +3,11 @@
   src: url("/fonts/kenteken.ttf");
 }
 
+:root {
+    --app-height: 100%;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -42,6 +47,9 @@ h2 {
   margin: 0 auto;
   background-color: #ffff;
   position: relative;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
 }
 
 .displaynone {
