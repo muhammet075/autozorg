@@ -1,7 +1,7 @@
 {
     "theme_color": "#0C79DD",
     "background_color": "#ffffff",
-    "display": "browser",
+    "display": "fullscreen",
     "scope": "/",
     "start_url": "/",
     "name": "AutoZorg",
