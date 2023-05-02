@@ -143,13 +143,17 @@ for (let i = 0; i < Math.min(jsondata.length, 50); i++) {
 function afspraakSluiten(){
   document.querySelector(".afspraakcontainer").classList.add("displaynone");
   document.querySelector("body").classList.remove("noscroll");
+  document.querySelector(".afspraakcontainercontent").classList.remove("afspraaktijddatumerror");
+  document.querySelector(".datumafspraak").value = "";
+  document.querySelector(".tijdafspraak").value = "";
+
 }
 
 async function afspraakBevestigen(){
 
   const datumafspraak = document.querySelector(".datumafspraak");
   const tijdafspraak = document.querySelector(".tijdafspraak");
-
+      
   if (datumafspraak.value && tijdafspraak.value) {
 
     console.log(volgnummer);
