@@ -145,6 +145,12 @@
   cursor: pointer;
 }
 
+.container3 > div > section > button img{
+  width: 30px;
+  height: auto;
+}
+
+
 .container3 > div > p:last-of-type {
   margin: 50px 0;
   text-align: center;

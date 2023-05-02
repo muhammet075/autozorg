@@ -16,6 +16,7 @@ function Kenteken() {
       window.location = "/dashboard";
     }  
     document.querySelector("body").classList.add("disablescrolling");
+
   }, []);
 
   let kentekendata;
@@ -104,6 +105,28 @@ function Kenteken() {
       .classList.remove("huidigekmsectionerror");
   }
 
+  function formatNumber(){
+    let input = document.querySelector("#huidigeKilometerstand");
+    let kmStand = input.value.replace(/[^\d]/g, ""); // verwijder alle niet-numerieke tekens uit de invoer
+    if (kmStand.length > 3) {
+      kmStand = kmStand.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // voeg een punt toe na elke groep van drie cijfers, beginnend bij de meest linkse groep van cijfers
+    }
+    input.value = kmStand; // plaats de geformatteerde kilometerstand terug in het invoerveld
+  }
+
+
+  function formatNumber2() {
+    let input = document.querySelector("#kmstandonderhoud");
+    let kmStand = input.value.replace(/[^\d]/g, ""); // verwijder alle niet-numerieke tekens uit de invoer
+    if (kmStand.length > 3) {
+      kmStand = kmStand.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // voeg een punt toe na elke groep van drie cijfers, beginnend bij de meest linkse groep van cijfers
+    }
+    input.value = kmStand; // plaats de geformatteerde kilometerstand terug in het invoerveld
+  }
+
+
+
+
   function fourthButton() {
     if (document.querySelector(".huidigeKilometerstand").value === "") {
       document
@@ -113,9 +136,11 @@ function Kenteken() {
       document.querySelector(".container4").classList.add("displaynone");
       document.querySelector(".container5").classList.remove("displaynone");
 
-      console.log(document.querySelector(".huidigeKilometerstand").value);
+      let kmStandVoorlopig = document.querySelector(".huidigeKilometerstand").value
+      kmStandVoorlopig = Number(kmStandVoorlopig.replace(/\./g, ""));
+      let kmstand = kmStandVoorlopig;
 
-      let kmstand = document.querySelector(".huidigeKilometerstand").value;
+      console.log("kmStandVoorlopig", kmstand);
 
       JSON.parse(kmstand);
 
@@ -131,7 +156,10 @@ function Kenteken() {
       .querySelector(".onderhoudonbekend")
       .classList.remove("displaynone");
 
-    let kmstand = document.querySelector(".huidigeKilometerstand").value;
+      let kmStandVoorlopig = document.querySelector(".huidigeKilometerstand").value
+      kmStandVoorlopig = Number(kmStandVoorlopig.replace(/\./g, ""));
+      let kmstand = kmStandVoorlopig;
+
     kentekendata["onderhoud_bij_aantal_km"] = kmstand;
     kentekendata["eerst_volgende_onderhoud"] = "Grote onderhoudsbeurt";
   }
@@ -175,12 +203,16 @@ function Kenteken() {
 
       document.querySelector(".radiossection").classList.add("errorstate");
     } else {
-      const kmstandonderhoud = Number(
-        document.querySelector(".huidigeKilometerstand").value
-      );
-      const huidigeKilometerstand = Number(
-        document.querySelector(".kmstandonderhoud").value
-      );
+
+
+      let kmStandVoorlopig = document.querySelector(".huidigeKilometerstand").value;
+      kmStandVoorlopig = Number(kmStandVoorlopig.replace(/\./g, ""));
+      let kmstandonderhoud = kmStandVoorlopig;
+
+      let kmStandVoorlopig2 = document.querySelector(".kmstandonderhoud").value;
+      kmStandVoorlopig2 = Number(kmStandVoorlopig2.replace(/\./g, ""));
+      let huidigeKilometerstand = kmStandVoorlopig2;
+
 
       if (huidigeKilometerstand > kmstandonderhoud) {
         console.log(
@@ -203,7 +235,9 @@ function Kenteken() {
   }
 
   function onderhoudBekendAfronden() {
-    laatsteKmStand = document.querySelector(".kmstandonderhoud").value;
+    let kmStandVoorlopig2 = document.querySelector(".kmstandonderhoud").value;
+    kmStandVoorlopig2 = Number(kmStandVoorlopig2.replace(/\./g, ""));
+    let laatsteKmStand = kmStandVoorlopig2;
 
     if (document.querySelector(".onderhoudsdatum").value === "") {
       console.log("error");
@@ -222,7 +256,9 @@ function Kenteken() {
         laatsteSoortOnderhoudDatum + laatsteKmStand + laatsteSoortOnderhoud
       );
 
-      let kmstand = document.querySelector(".huidigeKilometerstand").value;
+      let kmStandVoorlopig = document.querySelector(".huidigeKilometerstand").value;
+      kmStandVoorlopig = Number(kmStandVoorlopig.replace(/\./g, ""));
+      let kmstand = kmStandVoorlopig;
 
       if (laatsteSoortOnderhoud === "kleinebeurt") {
         kentekendata["eerst_volgende_onderhoud"] = "Grote onderhoudsbeurt";
@@ -450,11 +486,13 @@ function Kenteken() {
           <p>Wat is de huidige kilometerstand?</p>
           <section className='huidigekmsection'>
             <input
-              type='number'
+              type='text'
               placeholder='Bijv: 125.000'
               className='huidigeKilometerstand graytextinput'
-              maxlength='6'
+              maxlength='8'
               id='huidigeKilometerstand'
+              // pattern='[0-9]*'
+              onInput={formatNumber}
               onClick={removeHuidigekmError}
             ></input>
             <label for='huidigeKilometerstand'>KM</label>
@@ -500,12 +538,13 @@ function Kenteken() {
           <p>Wat was de kilometerstand van de laatste onderhoudsbeurt?</p>
           <section className='kmstandonderhoudsection'>
             <input
-              type='number'
+              type='text'
               className='kmstandonderhoud graytextinput'
               id='kmstandonderhoud'
-              maxlength='6'
+              maxlength='8'
               placeholder='Bijv: 80.000'
               onClick={removeKmstandOnderhoudError}
+              onInput={formatNumber2}
             ></input>
             <label for='kmstandonderhoud'>KM</label>
           </section>
