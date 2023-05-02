@@ -240,18 +240,18 @@ async function afspraakBevestigen(){
         <div className='garagecontainer'></div>
       </div>
 
-      <div
-        className={styles.afspraakcontainer + " afspraakcontainer displaynone"}
-      >
+      <div className={styles.afspraakcontainer + " afspraakcontainer displaynone"}>
         <button onClick={afspraakSluiten}>X</button>
+        
+        <section>
+          <h2>Afspraak</h2>
 
-        <h2>Afspraak</h2>
+          <p>Kies datum:</p>
+          <input type='date' className='datumafspraak'></input>
 
-        <p>Kies datum:</p>
-        <input type='date' className="datumafspraak"></input>
-
-        <p>Kies tijd:</p>
-        <input type='time' className="tijdafspraak"></input>
+          <p>Kies tijd:</p>
+          <input type='time' className='tijdafspraak'></input>
+        </section>
 
         <button onClick={afspraakBevestigen}>Afspraak Bevestigen</button>
       </div>
