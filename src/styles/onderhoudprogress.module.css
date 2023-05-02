@@ -1,10 +1,11 @@
 .onderhoud{
     padding: 0 15px;
     margin-top: 20px;
+    padding-bottom: 100px;
 }
 
 .onderhoud h1{
-    font-size: 1.5em;
+    font-size: 1.3em;
     text-align: center;
     margin-bottom: 25px;
 }
@@ -25,6 +26,10 @@
     display: block;
     margin-bottom: 25px;
     margin-top: 50px;
+}
+
+.locationcontainer span{
+    font-weight: 700;
 }
 
 .zoekgaragebtn {
@@ -97,7 +102,7 @@
 
 .afspraakcontainer{
     position: absolute;
-    background-color: #000000bd;
+    background-color: #000000de;
     width: 100%;
     height: 100%;
     top: 0;
@@ -125,21 +130,37 @@
 
 .afspraakcontainer section h2{
     margin-bottom: 75px;
+    font-size: 1.6em;
 }
 
 .afspraakcontainer section input{
     width: 90%;
+    margin-top: 0;
 }
 
 .afspraakcontainer section p{
+    text-align: initial;
+    width: 90%;
+    margin: auto;
     margin-bottom: 5px;
     margin-top: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .afspraakcontainer button:nth-of-type(2){
+    background-color: #0c79dd;
+    border: none;
+    color: #ffff;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 600;
     display: block;
     margin: auto;
     width: 90%;
     margin-top: 150px;
-    padding: 10px;
+    padding: 25px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }

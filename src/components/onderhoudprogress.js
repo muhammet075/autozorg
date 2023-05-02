@@ -104,7 +104,7 @@ async function zoekGarages(){
 
             let html = "";
 
-for (let i = 0; i < Math.min(jsondata.length, 20); i++) {
+for (let i = 0; i < Math.min(jsondata.length, 50); i++) {
           html += ` 
             <section>
             <h3>${jsondata[i].gevelnaam}</h3>
@@ -130,6 +130,7 @@ for (let i = 0; i < Math.min(jsondata.length, 20); i++) {
           console.log(allAfspraakBtns[i].value);
           volgnummer = allAfspraakBtns[i].value;
           document.querySelector(".afspraakcontainer").classList.remove("displaynone");
+          document.querySelector("body").classList.add("noscroll");
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
       }
@@ -140,43 +141,60 @@ for (let i = 0; i < Math.min(jsondata.length, 20); i++) {
 
 function afspraakSluiten(){
   document.querySelector(".afspraakcontainer").classList.add("displaynone");
+  document.querySelector("body").classList.remove("noscroll");
 }
 
 async function afspraakBevestigen(){
-  console.log(volgnummer);
 
-  const afspraakApi = "https://opendata.rdw.nl/resource/5k74-3jha.json?$query=SELECT%0A%20%20%60volgnummer%60%2C%0A%20%20%60naam_bedrijf%60%2C%0A%20%20%60gevelnaam%60%2C%0A%20%20%60straat%60%2C%0A%20%20%60huisnummer%60%2C%0A%20%20%60huisnummer_toevoeging%60%2C%0A%20%20%60postcode_numeriek%60%2C%0A%20%20%60postcode_alfanumeriek%60%2C%0A%20%20%60plaats%60%2C%0A%20%20%60api_bedrijf_erkenningen%60%0AWHERE%20%60volgnummer%60%20%3D%20" + volgnummer;
+  const datumafspraak = document.querySelector(".datumafspraak");
+  const tijdafspraak = document.querySelector(".tijdafspraak");
 
+  if (datumafspraak.value && tijdafspraak.value) {
 
+    console.log(volgnummer);
 
-  console.log(afspraakApi);
+    const afspraakApi =
+      "https://opendata.rdw.nl/resource/5k74-3jha.json?$query=SELECT%0A%20%20%60volgnummer%60%2C%0A%20%20%60naam_bedrijf%60%2C%0A%20%20%60gevelnaam%60%2C%0A%20%20%60straat%60%2C%0A%20%20%60huisnummer%60%2C%0A%20%20%60huisnummer_toevoeging%60%2C%0A%20%20%60postcode_numeriek%60%2C%0A%20%20%60postcode_alfanumeriek%60%2C%0A%20%20%60plaats%60%2C%0A%20%20%60api_bedrijf_erkenningen%60%0AWHERE%20%60volgnummer%60%20%3D%20" +
+      volgnummer;
 
-  const response = await fetch(afspraakApi);
-  const garagedata = await response.json();
-  console.log(garagedata);
+    console.log(afspraakApi);
 
-  afspraakdata = {
-    datum: document.querySelector(".datumafspraak").value,
-    tijd: document.querySelector(".tijdafspraak").value,
-    garagenaam: garagedata[0].gevelnaam,
-    adres: garagedata[0].straat + " " + garagedata[0].huisnummer,
-    postcode_plaats: garagedata[0].postcode_numeriek + garagedata[0].postcode_alfanumeriek + " " + garagedata[0].plaats,
-  };
+    const response = await fetch(afspraakApi);
+    const garagedata = await response.json();
+    console.log(garagedata);
 
-  console.log(afspraakdata)
+    afspraakdata = {
+      datum: document.querySelector(".datumafspraak").value,
+      tijd: document.querySelector(".tijdafspraak").value,
+      garagenaam: garagedata[0].gevelnaam,
+      adres: garagedata[0].straat + " " + garagedata[0].huisnummer,
+      postcode_plaats:
+        garagedata[0].postcode_numeriek +
+        garagedata[0].postcode_alfanumeriek +
+        " " +
+        garagedata[0].plaats,
+    };
 
-  localStorage.setItem("onderhoudafspraak", JSON.stringify(afspraakdata));
-  let getOnderhoudsAfspraak = localStorage.getItem("onderhoudafspraak");
+    console.log(afspraakdata);
 
-  console.log(JSON.parse(getOnderhoudsAfspraak));
+    localStorage.setItem("onderhoudafspraak", JSON.stringify(afspraakdata));
+    let getOnderhoudsAfspraak = localStorage.getItem("onderhoudafspraak");
+
+    console.log(JSON.parse(getOnderhoudsAfspraak));
 
     window.location = "/dashboard";
+    
+  } else {
+    document.querySelector(".afspraakcontainercontent").classList.add("afspraaktijddatumerror");
+  }
 
 }
 
 
-
-     
+  function removeError(){
+    document.querySelector(".afspraakcontainercontent").classList.remove("afspraaktijddatumerror");
+  }
+      
   function firstBack() {
     window.location = "/dashboard"
   }
@@ -240,17 +258,19 @@ async function afspraakBevestigen(){
         <div className='garagecontainer'></div>
       </div>
 
-      <div className={styles.afspraakcontainer + " afspraakcontainer displaynone"}>
+      <div
+        className={styles.afspraakcontainer + " afspraakcontainer displaynone"}
+      >
         <button onClick={afspraakSluiten}>X</button>
-        
-        <section>
+
+        <section className="afspraakcontainercontent">
           <h2>Afspraak</h2>
 
           <p>Kies datum:</p>
-          <input type='date' className='datumafspraak'></input>
+          <input type='date' onclick={removeError} className='datumafspraak graytextinput'></input>
 
           <p>Kies tijd:</p>
-          <input type='time' className='tijdafspraak'></input>
+          <input type='time' onclick={removeError} className='tijdafspraak graytextinput'></input>
         </section>
 
         <button onClick={afspraakBevestigen}>Afspraak Bevestigen</button>
