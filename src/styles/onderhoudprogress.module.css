@@ -143,6 +143,7 @@
 .afspraakcontainer section input{
     width: 90%;
     margin-top: 0;
+    -webkit-appearance: none;
 }
 
 .afspraakcontainer section p{
