@@ -12,6 +12,7 @@ let plaatsnaam;
 let garageApi; 
 let allAfspraakBtns;
 let volgnummer;
+let afspraakdata;
 
   useEffect(() => {
     let getItem = localStorage.getItem("kenteken");
@@ -154,14 +155,22 @@ async function afspraakBevestigen(){
   const garagedata = await response.json();
   console.log(garagedata);
 
-  // afspraakdata = {
-    
-  // }
+  afspraakdata = {
+    datum: document.querySelector(".datumafspraak").value,
+    tijd: document.querySelector(".tijdafspraak").value,
+    garagenaam: garagedata[0].gevelnaam,
+    adres: garagedata[0].straat + " " + garagedata[0].huisnummer,
+    postcode_plaats: garagedata[0].postcode_numeriek + garagedata[0].postcode_alfanumeriek + " " + garagedata[0].plaats,
+  };
 
-  // localStorage.setItem("onderhoudafspraak", JSON.stringify(afspraakdata));
-  // let getItem = localStorage.getItem("onderhoudafspraak");
+  console.log(afspraakdata)
 
-  // console.log(JSON.parse(getItem));
+  localStorage.setItem("onderhoudafspraak", JSON.stringify(afspraakdata));
+  let getOnderhoudsAfspraak = localStorage.getItem("onderhoudafspraak");
+
+  console.log(JSON.parse(getOnderhoudsAfspraak));
+
+    window.location = "/dashboard";
 
 }
 
@@ -239,10 +248,10 @@ async function afspraakBevestigen(){
         <h2>Afspraak</h2>
 
         <p>Kies datum:</p>
-        <input type='date'></input>
+        <input type='date' className="datumafspraak"></input>
 
         <p>Kies tijd:</p>
-        <input type='time'></input>
+        <input type='time' className="tijdafspraak"></input>
 
         <button onClick={afspraakBevestigen}>Afspraak Bevestigen</button>
       </div>
