@@ -1,10 +1,14 @@
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "../styles/settings.module.css";
 import deleteIco from "../assets/icons/delete.svg";
 import backIco from "../assets/icons/back.svg";
 
 function Settings() {
+
+  const router = useRouter();
+
   useEffect(() => {
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
@@ -34,7 +38,7 @@ function Settings() {
   }
 
   function firstBack(){
-     window.location = "/dashboard";
+     router.back();
   }
 
   return (

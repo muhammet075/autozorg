@@ -22,9 +22,11 @@ function Autodetails() {
       data.kilometerstand
     );
     document.querySelector(".brandstof").innerHTML = data.brandstof;
-    document.querySelector(".motortype").innerHTML = parseFloat(
-      (data.cilinderinhoud / 1000).toFixed(1)
-    );
+
+    let motorGrootte = data.cilinderinhoud;
+    let afgerondMotor = motorGrootte % 1000 === 0 ? (motorGrootte / 1000) + ".0" : (motorGrootte / 1000).toFixed(1);
+    document.querySelector(".motortype").innerHTML = afgerondMotor;
+
     document.querySelector(".bouwjaar").innerHTML =
       data.datum_eerste_toelating.substring(0, 4);
 
@@ -37,6 +39,7 @@ function Autodetails() {
       <div>
         <section>
           <img className='autoimg' />
+          <p className='kentekenstyle kentekenplaat'></p>
           <h1>Jouw auto</h1>
         </section>
         <section>
@@ -44,7 +47,6 @@ function Autodetails() {
             <span className='merk'></span>
             <span className='handelsbenaming'></span>
           </h2>
-          <p className='kentekenstyle kentekenplaat'></p>
         </section>
         <section>
           <ul>
