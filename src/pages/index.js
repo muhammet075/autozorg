@@ -12,6 +12,7 @@ export default function Home() {
     let data = JSON.parse(getItem);
 
     document.querySelector("header").style.display = "none";
+    document.querySelector("#__next").classList.add("fullheight");
 
     console.log(data);
 

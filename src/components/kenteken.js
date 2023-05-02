@@ -8,6 +8,7 @@ function Kenteken() {
   useEffect(() => {
 
     document.querySelector("footer").classList.add("displaynone");
+    document.querySelector("#__next").classList.add("fullheight");
 
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
