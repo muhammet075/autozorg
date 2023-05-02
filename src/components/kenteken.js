@@ -274,7 +274,7 @@ function Kenteken() {
         console.log("minder dan 20000");
 
         kentekendata["onderhoud_bij_aantal_km"] =
-          Number(kmstand) + tussenOnderhoud;
+          laatsteKmStand + tussenOnderhoud;
 
         // kentekendata["onderhoud_nu_nodig"] = "nee";
       } else {
