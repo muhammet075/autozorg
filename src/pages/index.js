@@ -5,6 +5,9 @@ import Opening from "@/components/opening";
 
 export default function Home() {
   useEffect(() => {
+
+    document.querySelector("footer").classList.add("displaynone");
+    
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
 

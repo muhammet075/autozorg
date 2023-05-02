@@ -6,6 +6,9 @@ import { useEffect } from "react";
 
 function Kenteken() {
   useEffect(() => {
+
+    document.querySelector("footer").classList.add("displaynone");
+
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
     if (data != null) {

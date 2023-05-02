@@ -42,7 +42,7 @@ function Apkcard() {
 
           <p className='displaynone apkverloopt'>
             De APK van jouw auto verloopt binnen{" "}
-            <span className='apkdagen2'></span> dagen. Maak direct een afspraak!
+            <span className='apkdagen2'></span> dagen. Maak direct een afspraak zodat je weer veilig over de weg kan rijden.
           </p>
           <Link className='apklink displaynone' href='/apk'>
             Afspraak inplannen

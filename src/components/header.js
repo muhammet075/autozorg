@@ -10,9 +10,9 @@ function Header() {
       let getItem = localStorage.getItem("kenteken");
       let data = JSON.parse(getItem);
       console.log("header", data)
-      if (data === null) {
-        document.querySelector(".settingsbtn").classList.add("displaynone");
-      }
+      // if (data === null) {
+      //   document.querySelector(".settingsbtn").classList.add("displaynone");
+      // }
     }, []);
 
   return (
@@ -22,7 +22,7 @@ function Header() {
           <Image src={Logo} alt='Logo van AutoZorg' priority />
         </Link>
 
-        <Link href="/instellingen" className={styles.settingsbtn + " settingsbtn"}><Image src={SettingsIco} alt="Instelling icoon"/></Link>
+        {/* <Link href="/instellingen" className={styles.settingsbtn + " settingsbtn"}><Image src={SettingsIco} alt="Instelling icoon"/></Link> */}
       </div>
     </header>
   );

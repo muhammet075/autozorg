@@ -49,7 +49,7 @@ h2 {
 
 #__next {
   max-width: 450px;
-  min-height: 100vh;
+  min-height: 90vh;
   margin: 0 auto;
   background-color: #ffff;
   position: relative;
@@ -222,7 +222,7 @@ h2 {
 }
 
 .ongeldigapk > div,
-.onderhoudnodig > div {
+.onderhoudnodig > div:nth-of-type(1) {
   background-color: #ffc8c8 !important;
   border: 1px solid #9e0000 !important;
 }

@@ -53,6 +53,16 @@ function Onderhoudcard() {
             Ja
           </Link>
         </div>
+
+        <div>
+          <h2>Service</h2>
+          <p className='onderhoudscontent'>
+            Tussentijds service nodig? Denk aan zaken zoals ruitenwissers laten vervangen, banden laten wisselen, defecte gloeilampen laten vervangen etc.
+          </p>
+          <Link href='/service' className='afspraakbtn'>
+            Afspraak Inplannen
+          </Link>
+        </div>
       </div>
     </>
   );
