@@ -73,7 +73,7 @@ function Onderhoudcard() {
 
         console.log("hm", data)
 
-        let newKmStand = data.onderhoud_bij_aantal_km + 15000;
+        let newKmStand = data.onderhoud_bij_aantal_km
 
         let updateData;
 
