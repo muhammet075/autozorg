@@ -5,14 +5,27 @@ function Pechhulpstate() {
     window.open("https://www.anwb.nl/wegenwacht/service/pechmelding", "_blank");
   }
 
+  function zoekGarages(){
+    document.querySelector(".anwbcontainer").classList.add("displaynone");
+    document.querySelector(".pechhulpcontainer").classList.remove("displaynone");
+  }
+
   return (
     <div className={styles.pechhulpstate}>
       <h1>Pechhulp</h1>
-      <div className={styles.container1}>
+
+      <div className={styles.container1 + " anwbcontainer"}>
         <h2>Heb jij een ANWB lidmaatschap?</h2>
-        <button onClick={openANWB}>Ja</button>
-        <button className='nee'>Nee</button>
+        <section>
+          <button onClick={openANWB}>Ja</button>
+          <button onClick={zoekGarages}>Nee</button>
+        </section>
       </div>
+
+      <div className={styles.container2 + " pechhulpcontainer displaynone"}>
+        <h2>pech?</h2>  
+      </div>
+
     </div>
   );
 }

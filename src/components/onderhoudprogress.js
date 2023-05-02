@@ -4,6 +4,7 @@ import plaatsen from "../../public/plaatsen";
 import Image from "next/image";
 import locationIco from "../assets/icons/location.svg";
 import backIco from "../assets/icons/back.svg"
+import closeIco from "../assets/icons/close.svg";
 
 
 function Onderhoudprogress() {
@@ -19,7 +20,7 @@ let afspraakdata;
     let data = JSON.parse(getItem);
     console.log(data);
 
-    document.querySelector(".onderhoudh1").innerHTML = "Tijd voor een " + data.eerst_volgende_onderhoud;
+    document.querySelector(".onderhoudh1").innerHTML = data.eerst_volgende_onderhoud;
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
@@ -261,7 +262,7 @@ async function afspraakBevestigen(){
       <div
         className={styles.afspraakcontainer + " afspraakcontainer displaynone"}
       >
-        <button onClick={afspraakSluiten}>X</button>
+        <button onClick={afspraakSluiten}><Image src={closeIco} alt="Sluiten Icoon"/></button>
 
         <section className="afspraakcontainercontent">
           <h2>Afspraak</h2>

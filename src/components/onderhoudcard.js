@@ -66,17 +66,10 @@ function Onderhoudcard() {
   function afspraakVoltooid(){
         let getItem = localStorage.getItem("kenteken");
         let data = JSON.parse(getItem);
-
-
         let getOnderhoudsAfspraak = localStorage.getItem("onderhoudafspraak");
         let onderhoudsAfspraakData = JSON.parse(getOnderhoudsAfspraak);
-
-        console.log("hm", data)
-
         let newKmStand = data.onderhoud_bij_aantal_km
-
         let updateData;
-
         let newEerstVolgendOnderhoud;
 
         if (data.eerst_volgende_onderhoud === "Grote onderhoudsbeurt"){
@@ -126,32 +119,55 @@ function Onderhoudcard() {
 
   return (
     <>
-      <div className={styles.onderhoudcard + " " + "onderhoudscard onderhoudgeldig"}>
-
-        <div className="onderhoudscardcontent">
+      <div
+        className={
+          styles.onderhoudcard + " " + "onderhoudscard onderhoudgeldig"
+        }
+      >
+        <div className='onderhoudscardcontent'>
           <h2 className='onderhoudh2'></h2>
-          <p className='onderhoudscontent'>Staat of is de kilometerstand voor bij de:</p>
+          <p className='onderhoudscontent'>
+            Staat of is de kilometerstand voor bij de:
+          </p>
           <p className={styles.kmstand + " kmstand"}></p>
-          <Link href='/onderhoud' className='afspraakbtn'>Ja</Link>
+          <Link href='/onderhoud' className='afspraakbtn'>
+            Ja
+          </Link>
         </div>
 
-        <div className="onderhoudsafspraakcard displaynone">
+        <div
+          className={
+            styles.onderhoudsafspraakcontainer +
+            " onderhoudsafspraakcard displaynone"
+          }
+        >
           <h2>Onderhoudsbeurt afspraak</h2>
-          <p><span className="onderhoudsafspraaknaam"></span></p>
+          <p>
+            <span className='onderhoudsafspraaknaam'></span>
+          </p>
           <p>Datum en tijd:</p>
-          <p><span className="onderhoudsafspraakdatum"></span></p>
+          <p>
+            <span className='onderhoudsafspraakdatum'></span>
+          </p>
           <p>Adres:</p>
-          <p><span className="onderhoudsafspraakadres"></span></p>
-          <button onClick={afspraakAnnuleren}>Afspraak annuleren</button>
+          <p>
+            <span className='onderhoudsafspraakadres'></span>
+          </p>
           <button onClick={afspraakVoltooid}>Afspraak voltooid</button>
+          <button onClick={afspraakAnnuleren}>Afspraak annuleren</button>
         </div>
 
         <div>
           <h2>Service</h2>
-          <p className='onderhoudscontent'>Tussentijds service nodig? Denk aan zaken zoals ruitenwissers laten vervangen, banden laten wisselen, defecte gloeilampen laten vervangen etc.</p>
-          <Link href='/service' className='afspraakbtn'>Afspraak Inplannen</Link>
+          <p className='onderhoudscontent'>
+            Tussentijds service nodig? Denk aan zaken zoals ruitenwissers laten
+            vervangen, banden laten wisselen, defecte gloeilampen laten
+            vervangen etc.
+          </p>
+          <Link href='/service' className='afspraakbtn'>
+            Afspraak Inplannen
+          </Link>
         </div>
-        
       </div>
     </>
   );
