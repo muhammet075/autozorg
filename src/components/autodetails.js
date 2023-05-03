@@ -64,7 +64,7 @@ function Autodetails() {
               Kilometerstand: <span className='kilometerstand'></span>
             </li>
             <li>
-              Motor type: <span className='motortype'></span>
+              Motorinhoud: <span className='motortype'></span>
             </li>
             <li>
               Brandstof: <span className='brandstof'></span>
