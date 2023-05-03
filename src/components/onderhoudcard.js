@@ -53,6 +53,36 @@ function Onderhoudcard() {
         document.querySelector(".onderhoudsafspraakdatum").innerHTML = onderhoudsAfspraakData.datum + " " + onderhoudsAfspraakData.tijd;
         document.querySelector(".onderhoudsafspraakadres").innerHTML = onderhoudsAfspraakData.adres + "<br/>" + onderhoudsAfspraakData.postcode_plaats;
        }
+
+
+
+
+      let getServiceAfspraak = localStorage.getItem("serviceafspraak");
+      let serviceAfspraakData = JSON.parse(getServiceAfspraak);
+
+      console.log(serviceAfspraakData);
+
+       if (serviceAfspraakData === null) {
+        console.log("geen service");
+       } else{
+        console.log("wel service");
+        document.querySelector(".servicecontainer").classList.add("displaynone");
+        document.querySelector(".serviceafspraakcontainer").classList.remove("displaynone");
+
+        document.querySelector(".serviceafspraaknaam").innerHTML = serviceAfspraakData.garagenaam;
+        document.querySelector(".serviceafspraakdatum").innerHTML = serviceAfspraakData.datum + " " + serviceAfspraakData.tijd;
+        document.querySelector(".serviceafspraakadres").innerHTML = serviceAfspraakData.adres + "<br/>" + serviceAfspraakData.postcode_plaats;
+
+        if (!serviceAfspraakData.werkzaamheden){
+          document.querySelector(".servicewerkzaamheden").innerHTML = "N.v.t";
+        } else{
+        document.querySelector(".servicewerkzaamheden").innerHTML = serviceAfspraakData.werkzaamheden;
+        }
+      }
+
+
+
+
   }, []);
 
   function afspraakAnnuleren(){
@@ -109,10 +139,12 @@ function Onderhoudcard() {
           localStorage.removeItem("onderhoudafspraak");
           location.reload()    
             }
-
-
-
   };
+
+  function serviceAfspraakAnnuleren(){
+          localStorage.removeItem("serviceafspraak");
+          location.reload();
+  }
 
   return (
     <>
@@ -154,9 +186,9 @@ function Onderhoudcard() {
           <button onClick={afspraakAnnuleren}>Afspraak annuleren</button>
         </div>
 
-        <div>
+        <div className='servicecontainer'>
           <h2>Service</h2>
-          <p className='onderhoudscontent'>
+          <p>
             Tussentijds service nodig? Denk aan zaken zoals ruitenwissers laten
             vervangen, banden laten wisselen, defecte gloeilampen laten
             vervangen etc.
@@ -164,6 +196,29 @@ function Onderhoudcard() {
           <Link href='/service' className='afspraakbtn'>
             Afspraak Inplannen
           </Link>
+        </div>
+      </div>
+
+      <div className={styles.serviceafspraak + " serviceafspraakcontainer displaynone"}>
+        <div>
+        <h2>Service afspraak</h2>
+        <p>
+          <span className='serviceafspraaknaam'></span>
+        </p>
+        <p>Datum en tijd:</p>
+        <p>
+          <span className='serviceafspraakdatum'></span>
+        </p>
+        <p>Adres:</p>
+        <p>
+          <span className='serviceafspraakadres'></span>
+        </p>
+        <p>Werkzaamheden:</p>
+        <p>
+          <span className='servicewerkzaamheden'></span>
+        </p>
+        <p>Deze afspraak herrinering verdwijnt automatisch de eerst volgende dag.</p>
+        <button onClick={serviceAfspraakAnnuleren}>Afspraak annuleren</button>
         </div>
       </div>
     </>

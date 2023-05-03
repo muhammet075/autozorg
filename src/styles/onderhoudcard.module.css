@@ -1,9 +1,9 @@
-.onderhoudcard {
+.onderhoudcard, .serviceafspraak{
   padding: 0 15px;
   margin-bottom: 25px;
 }
 
-.onderhoudcard > div {
+.onderhoudcard > div, .serviceafspraak > div{
   background-color: #deefff;
   border: 1px solid #0c79dd;
   border-radius: 5px;
@@ -13,16 +13,16 @@
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.onderhoudcard > div h2 {
+.onderhoudcard > div h2, .serviceafspraak > div h2 {
   margin-bottom: 10px;
 }
 
-.onderhoudcard > div p {
+.onderhoudcard > div p, .serviceafspraak > div p {
   font-size: 0.9em;
   margin-bottom: 15px;
 }
 
-.onderhoudcard > div a {
+.onderhoudcard > div a, .serviceafspraak > div a {
   width: 75%;
 }
 
@@ -31,27 +31,35 @@
   font-size: 1.2em !important;
 }
 
-.onderhoudsafspraakcontainer p:nth-of-type(1){
+.onderhoudsafspraakcontainer p:nth-of-type(1), .serviceafspraak > div p:nth-of-type(1){
     font-weight: 600;
     font-size: 1em;
     text-transform: uppercase;
     margin: 20px 0;
 }
 
-.onderhoudsafspraakcontainer p:nth-of-type(2){
+.onderhoudsafspraakcontainer p:nth-of-type(2), .serviceafspraak > div p:nth-of-type(2){
   margin-bottom: 0;
 }
 
-.onderhoudsafspraakcontainer p:nth-of-type(3){
+.onderhoudsafspraakcontainer p:nth-of-type(3), .serviceafspraak > div p:nth-of-type(3){
     font-weight: 600;
 }
 
-.onderhoudsafspraakcontainer p:nth-of-type(4){
+.onderhoudsafspraakcontainer p:nth-of-type(4), .serviceafspraak > div p:nth-of-type(4){
   margin-bottom: 0;
 }
 
-.onderhoudsafspraakcontainer p:nth-of-type(5){
-    font-weight: 600;
+.onderhoudsafspraakcontainer p:nth-of-type(5), .serviceafspraak > div p:nth-of-type(5){
+  font-weight: 600;
+}
+
+.serviceafspraak > div p:nth-of-type(6){
+  margin-bottom: 0;
+}
+
+.serviceafspraak > div p:nth-of-type(7){
+  font-weight: 600;
 }
 
 .onderhoudsafspraakcontainer button{
@@ -78,4 +86,22 @@
 .onderhoudsafspraakcontainer button:nth-of-type(2){
     background-color: #ce0808;
     border: 1px solid #7e0000;
+}
+
+.serviceafspraak > div button{
+    width: 75%;
+    font-weight: 500;
+    font-size: 0.85em;
+    background-color: #ce0808;
+    border: 1px solid #7e0000;
+    color: #ffff;
+    text-transform: uppercase;
+    margin: 25px 0;
+    display: block;
+    text-align: center;
+    border-radius: 3px;
+    padding: 5px 15px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
