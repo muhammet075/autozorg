@@ -1,6 +1,6 @@
 import styles from "../styles/kenteken.module.css";
 import Image from "next/image";
-import deleteIco from "../assets/icons/delete.svg";
+import deleteIco from "../assets/icons/delete.png";
 import backIco from "../assets/icons/back.svg";
 import { useEffect } from "react";
 

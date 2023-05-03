@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import styles from "../styles/afsprakencard.module.css";
 import backIco from "../assets/icons/back.svg";
-import deleteIco from "../assets/icons/delete.svg";
+import deleteIco from "../assets/icons/delete.png";
 
 
 function Afsprakencard() {

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "../styles/settings.module.css";
-import deleteIco from "../assets/icons/delete.svg";
+import deleteIco from "../assets/icons/delete.png";
 import backIco from "../assets/icons/back.svg";
 
 function Settings() {
