@@ -60,12 +60,22 @@ function Onderhoudcard() {
       let getServiceAfspraak = localStorage.getItem("serviceafspraak");
       let serviceAfspraakData = JSON.parse(getServiceAfspraak);
 
-      console.log(serviceAfspraakData);
-
        if (serviceAfspraakData === null) {
         console.log("geen service");
        } else{
         console.log("wel service");
+
+      const datumString = serviceAfspraakData.datum;
+      const datum = new Date(datumString);
+
+      if (datum < new Date()) {
+        console.log("De datum is in het verleden.");
+        localStorage.removeItem("serviceafspraak");
+        location.reload();
+
+      } else {
+        console.log("De datum is in de toekomst.");
+    
         document.querySelector(".servicecontainer").classList.add("displaynone");
         document.querySelector(".serviceafspraakcontainer").classList.remove("displaynone");
 
@@ -79,6 +89,7 @@ function Onderhoudcard() {
         document.querySelector(".servicewerkzaamheden").innerHTML = serviceAfspraakData.werkzaamheden;
         }
       }
+    }
 
 
 
