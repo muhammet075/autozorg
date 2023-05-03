@@ -1,0 +1,72 @@
+.afsprakencard{
+    padding: 15px;
+    padding-bottom: 150px;
+}
+
+.afsprakencard h1{
+    font-size: 1.3em;
+    text-transform: uppercase;
+    color: #535353;
+    margin-bottom: 25px;
+}
+
+.zerostate{
+    padding: 15px;
+    margin: 0 auto;
+    margin-top: 200px;
+    text-align: center;
+}
+
+.zerostate h2{
+    margin-bottom: 5px;
+}
+
+.zerostate p{
+    font-size: 0.9em;
+}
+
+
+.afsprakenlijst section{
+    background-color: #deefff;
+    border: 1px solid #0c79dd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 25px;
+    position: relative;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.afsprakenlijst section h3:first-child{
+    font-size: 1.1em;
+    margin-bottom: 25px;
+}
+
+.afsprakenlijst section h3:nth-of-type(2){
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.afsprakenlijst section p:nth-of-type(2){
+    font-weight: 600;
+    margin: 5px 0 15px 0;
+}
+
+.afsprakenlijst section p:nth-of-type(4){
+    font-weight: 600;
+    margin: 5px 0 15px 0;
+}
+
+.afsprakenlijst section button:last-child{
+    background: none;
+    border: none;
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    cursor: pointer;
+}
+
+.afsprakenlijst section button:last-child img{
+    width: 35px;
+    height: auto;
+}

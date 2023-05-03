@@ -4,6 +4,7 @@ import Image from "next/image";
 import SettingsIco from "../assets/icons/settings.svg";
 import HomeIco from "../assets/icons/home.svg";
 import PechhulpIco from "../assets/icons/pechhulp.svg";
+import CalendarIco from "../assets/icons/calendar.svg";
 
 function Footer() {
 
@@ -20,6 +21,13 @@ function Footer() {
         <div>
           <Image src={HomeIco} alt='Home Icoon' />
           <p>Home</p>
+        </div>
+      </Link>
+
+      <Link href='/afspraken'>
+        <div>
+          <Image src={CalendarIco} alt='Afspraken Icoon' />
+          <p>Afspraken</p>
         </div>
       </Link>
 

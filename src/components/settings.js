@@ -31,6 +31,10 @@ function Settings() {
 
   function deleteCar(){
     localStorage.removeItem("kenteken");
+    localStorage.removeItem("onderhoudafspraak");
+    localStorage.removeItem("serviceafspraak");
+    localStorage.removeItem("apkafspraak");
+
     document.querySelector(".autocard").classList.add("displaynone");
     setTimeout(function () {
         window.location = "/register"
