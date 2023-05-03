@@ -228,7 +228,7 @@ function Onderhoudcard() {
         <p>
           <span className='servicewerkzaamheden'></span>
         </p>
-        <p>Deze afspraak herrinering verdwijnt automatisch de eerst volgende dag.</p>
+        <p>Deze afspraak herrinering verdwijnt automatisch de eerst volgende dag van de dag van de afspraak.</p>
         <button onClick={serviceAfspraakAnnuleren}>Afspraak annuleren</button>
         </div>
       </div>
