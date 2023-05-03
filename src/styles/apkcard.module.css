@@ -1,5 +1,6 @@
 .apkcard,
-.pechhulp {
+.pechhulp,
+.apkafspraak {
   padding: 0 15px;
   margin-bottom: 25px;
 }
@@ -26,18 +27,74 @@
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
+.apkafspraak > div{
+  background-color: #deefff;
+  border: 1px solid #0c79dd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
 .apkcard > div h2,
 .pechhulp > div h2 {
   margin-bottom: 10px;
 }
 
 .apkcard > div p,
-.pechhulp > div p {
+.pechhulp > div p,
+.apkafspraak > div p {
   font-size: 0.9em;
   margin-bottom: 15px;
 }
 
 .apkcard > div a,
-.pechhulp > div a {
+.pechhulp > div a,
+.apkafspraak > div a{
   width: 75%;
+}
+
+.apkafspraak > div h2{
+  margin-bottom: 10px;
+}
+
+.apkafspraak > div p:nth-of-type(1){
+    font-weight: 600;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin: 20px 0;
+}
+
+.apkafspraak > div p:nth-of-type(2){
+  margin-bottom: 0;
+}
+
+.apkafspraak > div p:nth-of-type(3){
+    font-weight: 600;
+}
+
+.apkafspraak > div p:nth-of-type(4){
+  margin-bottom: 0;
+}
+
+.apkafspraak > div p:nth-of-type(5){
+    font-weight: 600;
+}
+
+.apkafspraak button{
+    width: 75%;
+    font-weight: 500;
+    font-size: 0.85em;
+    background-color: #ce0808;
+    border: 1px solid #7e0000;
+    color: #ffff;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    border-radius: 3px;
+    padding: 5px 15px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin: 25px 0 15px 0;
 }

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 function Apkcard() {
   useEffect(() => {
+
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
 
@@ -27,12 +28,38 @@ function Apkcard() {
       document.querySelector(".apkverloopt").classList.remove("displaynone");
       document.querySelector(".apklink").classList.remove("displaynone");
       document.querySelector(".apkgeldig").classList.add("ongeldigapk");
+    } else{
+      localStorage.removeItem("apkafspraak");
     }
+
+
+
+     let getApkAfspraak = localStorage.getItem("apkafspraak");
+     let apkAfspraakData = JSON.parse(getApkAfspraak);
+
+     if (apkAfspraakData === null) {
+       console.log("geen apk afspraak");
+     } else {
+      console.log(apkAfspraakData);
+       console.log("wel apk afsrpaak");
+       document.querySelector(".apkcardcontainer").classList.add("displaynone");
+       document.querySelector(".apkafspraakcontainer").classList.remove("displaynone");
+
+       document.querySelector(".apkafspraaknaam").innerHTML = apkAfspraakData.garagenaam;
+       document.querySelector(".apkafspraakdatum").innerHTML = apkAfspraakData.datum + " " + apkAfspraakData.tijd;
+       document.querySelector(".apkafspraakadres").innerHTML = apkAfspraakData.adres + "<br/>" + apkAfspraakData.postcode_plaats;
+     }
+
   }, []);
+
+  function apkAnnuleren(){
+    localStorage.removeItem("apkafspraak");
+    location.reload();
+  }
 
   return (
     <>
-      <div className={styles.apkcard + " " + "apkgeldig"}>
+      <div className={styles.apkcard + " " + "apkgeldig apkcardcontainer"}>
         <div>
           <h2>APK</h2>
           <p className='apkcontent'>
@@ -42,11 +69,34 @@ function Apkcard() {
 
           <p className='displaynone apkverloopt'>
             De APK van jouw auto verloopt binnen{" "}
-            <span className='apkdagen2'></span> dagen. Maak direct een afspraak zodat je weer veilig over de weg kan rijden.
+            <span className='apkdagen2'></span> dagen. Maak direct een afspraak
+            zodat je weer veilig over de weg kan rijden.
           </p>
           <Link className='apklink displaynone' href='/apk'>
             Afspraak inplannen
           </Link>
+        </div>
+      </div>
+
+      <div className={styles.apkafspraak + " apkafspraakcontainer displaynone"}>
+        <div>
+          <h2>APK Afspraak</h2>
+
+          <p>
+            <span className='apkafspraaknaam'></span>
+          </p>
+          <p>Datum en tijd:</p>
+          <p>
+            <span className='apkafspraakdatum'></span>
+          </p>
+          <p>Adres:</p>
+          <p>
+            <span className='apkafspraakadres'></span>
+          </p>
+
+          <p>Deze afspraak herrinering verdwijnt automatisch als de APK keuring is goedgekeurd door de RDW.</p>
+
+          <button onClick={apkAnnuleren}>Afspraak annuleren</button>
         </div>
       </div>
 

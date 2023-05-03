@@ -51,16 +51,13 @@ function Onderhoudcard() {
 
         document.querySelector(".onderhoudsafspraaknaam").innerHTML = onderhoudsAfspraakData.garagenaam;
         document.querySelector(".onderhoudsafspraakdatum").innerHTML = onderhoudsAfspraakData.datum + " " + onderhoudsAfspraakData.tijd;
-        document.querySelector(".onderhoudsafspraakadres").innerHTML = onderhoudsAfspraakData.adres + " " + onderhoudsAfspraakData.postcode_plaats;
+        document.querySelector(".onderhoudsafspraakadres").innerHTML = onderhoudsAfspraakData.adres + "<br/>" + onderhoudsAfspraakData.postcode_plaats;
        }
-
-      
   }, []);
 
   function afspraakAnnuleren(){
       localStorage.removeItem("onderhoudafspraak");
       location.reload();
-
   };
 
   function afspraakVoltooid(){
