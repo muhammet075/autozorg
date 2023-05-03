@@ -124,7 +124,7 @@ function Pechhulpstate() {
             <p>${jsondata[i].postcode_numeriek} ${jsondata[i].postcode_alfanumeriek} ${jsondata[i].plaats}</p>
 
             <div>
-            <a href="tel:075-123-4567" class="afspraakbtn" value="${jsondata[i].volgnummer}">Bel sleepdienst</a>
+            <a href="tel:075-123-4567" class="afspraakbtn" value="${jsondata[i].volgnummer}"><img src="/icons/phone.svg"/>Bel sleepdienst</a>
             </div>
             </section>
             `;
