@@ -219,11 +219,7 @@ async function afspraakBevestigen(){
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
-          <div
-            className={
-              styles.locationcontainer + " locationcontainer displaynone"
-            }
-          >
+          <div className={styles.locationcontainer + " locationcontainer displaynone"}>
             <Image src={locationIco} alt='Locatie icoon' />
             <p>
               Huidige locatie: <span className='plaatsnaam'></span>
@@ -246,17 +242,12 @@ async function afspraakBevestigen(){
         </div>
         <button
           onClick={zoekGarages}
-          className={styles.zoekgaragebtn + " zoekgaragebtn displaynone"}
-        >
+          className={styles.zoekgaragebtn + " zoekgaragebtn displaynone"}>
           Zoek Garages
         </button>
       </div>
 
-      <div
-        className={
-          styles.onderhoudcontainer2 + " onderhoudcontainer2 displaynone"
-        }
-      >
+      <div className={styles.onderhoudcontainer2 + " onderhoudcontainer2 displaynone"}>
         <button className='backbutton' onClick={secondBack}>
           <Image src={backIco} alt='Terug icoon' />
         </button>
