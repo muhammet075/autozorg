@@ -23,10 +23,26 @@
     font-size: 10px;
     box-shadow: none;
     margin-bottom: 10px;
+    display: block;
+    position: relative;
 }
 
 .footer a div img{
     width: 25px;
     height: auto;
     margin-bottom: 5px;
+}
+
+.footer a div span{
+    background-color: #b70a0a;
+    position: absolute;
+    top: -10px;
+    right: 10%;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
 }
