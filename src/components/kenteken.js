@@ -162,10 +162,11 @@ function Kenteken() {
 
     if (kmstand < 15000){
     kentekendata["onderhoud_bij_aantal_km"] = 15000;
+    kentekendata["eerst_volgende_onderhoud"] = "Kleine onderhoudsbeurt";
     } else {
     kentekendata["onderhoud_bij_aantal_km"] = kmstand;
-    }
     kentekendata["eerst_volgende_onderhoud"] = "Grote onderhoudsbeurt";
+    }
   }
 
   function onderhoudOnbekendButton() {

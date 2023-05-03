@@ -38,7 +38,7 @@ function Settings() {
     document.querySelector(".autocard").classList.add("displaynone");
     setTimeout(function () {
         window.location = "/register"
-    }, 500);
+    }, 250);
   }
 
   function firstBack(){
