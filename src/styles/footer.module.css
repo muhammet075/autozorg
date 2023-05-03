@@ -1,5 +1,6 @@
 .footer{
-    height: 13vh;
+    height: 10vh;
+    padding-bottom: 1vh;
     background-color: #0c79dd;
     position: fixed;
     max-width: 450px;

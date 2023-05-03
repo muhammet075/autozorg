@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import styles from "../styles/footer.module.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,7 +10,53 @@ import CalendarIco from "../assets/icons/calendar.svg";
 
 function Footer() {
 
+const router = useRouter();
+
+const handleRouteChange = (url) => {
+
+  if (url === "/dashboard"){
+
+    document.querySelector(".pechhulplink").classList.remove("activeurl");
+    document.querySelector(".afsprakenlink").classList.remove("activeurl");
+    document.querySelector(".instellingenlink").classList.remove("activeurl");
+    document.querySelector(".homelink").classList.add("activeurl");
+
+  } else if (url === "/pechhulp"){
+
+    document.querySelector(".pechhulplink").classList.add("activeurl");
+    document.querySelector(".afsprakenlink").classList.remove("activeurl");
+    document.querySelector(".instellingenlink").classList.remove("activeurl");
+    document.querySelector(".homelink").classList.remove("activeurl");
+
+  } else if (url === "/afspraken"){
+
+    document.querySelector(".pechhulplink").classList.remove("activeurl");
+    document.querySelector(".afsprakenlink").classList.add("activeurl");
+    document.querySelector(".instellingenlink").classList.remove("activeurl");
+    document.querySelector(".homelink").classList.remove("activeurl");
+
+  } else if (url === "/instellingen"){
+      
+    document.querySelector(".pechhulplink").classList.remove("activeurl");
+    document.querySelector(".afsprakenlink").classList.remove("activeurl");
+    document.querySelector(".instellingenlink").classList.add("activeurl");
+    document.querySelector(".homelink").classList.remove("activeurl");
+
+  } else {
+      
+    document.querySelector(".pechhulplink").classList.remove("activeurl");
+    document.querySelector(".afsprakenlink").classList.remove("activeurl");
+    document.querySelector(".instellingenlink").classList.remove("activeurl");
+    document.querySelector(".homelink").classList.remove("activeurl");
+  }
+
+};
+
+
   useEffect(() => {
+
+router.events.on("routeChangeComplete", handleRouteChange);
+
   
 const service = localStorage.getItem("serviceafspraak");
 const apk = localStorage.getItem("apkafspraak");
@@ -53,21 +100,21 @@ if (service && apk && onderhoud) {
 
   return (
     <footer className={styles.footer}>
-      <Link href='/pechhulp'>
+      <Link href='/pechhulp' className="pechhulplink">
         <div>
           <Image src={PechhulpIco} alt='Pechhulp Icoon' />
           <p>Pechhulp</p>
         </div>
       </Link>
 
-      <Link href='/dashboard'>
+      <Link href='/dashboard' className="homelink">
         <div>
           <Image src={HomeIco} alt='Home Icoon' />
           <p>Home</p>
         </div>
       </Link>
 
-      <Link href='/afspraken'>
+      <Link href='/afspraken' className="afsprakenlink">
         <div>
           <Image src={CalendarIco} alt='Afspraken Icoon' />
           <p>Afspraken</p>
@@ -75,7 +122,7 @@ if (service && apk && onderhoud) {
         </div>
       </Link>
 
-      <Link href='/instellingen'>
+      <Link href='/instellingen' className="instellingenlink">
         <div>
           <Image src={SettingsIco} alt='Instellingen Icoon' />
           <p>Instellingen</p>

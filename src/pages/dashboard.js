@@ -11,6 +11,12 @@ export default function Dashboard() {
     if (data === null) {
       window.location = "/register";
     }
+
+    document.querySelector(".pechhulplink").classList.remove("activeurl");
+    document.querySelector(".afsprakenlink").classList.remove("activeurl");
+    document.querySelector(".instellingenlink").classList.remove("activeurl");
+    document.querySelector(".homelink").classList.add("activeurl");
+
   }, []);
 
   return (

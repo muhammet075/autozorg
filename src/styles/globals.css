@@ -49,7 +49,7 @@ h2 {
 
 #__next {
   max-width: 450px;
-  min-height: 87vh;
+  min-height: 90vh;
   margin: 0 auto;
   background-color: #ffff;
   position: relative;
@@ -75,6 +75,14 @@ h2 {
   top: 25px !important;
   left: 20px !important;
   cursor: pointer !important;
+}
+
+.activeurl{
+  color: #3bd9ff;
+}
+
+.activeurl div img{
+  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(187deg) brightness(119%) contrast(119%);
 }
 
 .graytextinput {
