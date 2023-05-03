@@ -11,34 +11,37 @@ function Autodetails() {
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
 
-    document.querySelector(".autoimg").src =
-      "/carlogos/" + data.merk.toLowerCase().replace(/ /g, "_") + ".png";
+    document.querySelector(".autoimg").src = "/carlogos/" + data.merk.toLowerCase().replace(/ /g, "_") + ".png";
 
     document.querySelector(".kentekenplaat").innerHTML = data.kenteken;
     document.querySelector(".merk").innerHTML = data.merk;
-    document.querySelector(".handelsbenaming").innerHTML =
-      " " + data.handelsbenaming;
-    document.querySelector(".kilometerstand").innerHTML = addDot(
-      data.kilometerstand
-    );
+    document.querySelector(".handelsbenaming").innerHTML = " " + data.handelsbenaming;
+    document.querySelector(".kilometerstand").innerHTML = addDot(data.kilometerstand);
     document.querySelector(".brandstof").innerHTML = data.brandstof;
 
     let motorGrootte = data.cilinderinhoud;
-    let afgerondMotor = motorGrootte % 1000 === 0 ? (motorGrootte / 1000) + ".0" : (motorGrootte / 1000).toFixed(1);
+    let afgerondMotor =
+      motorGrootte % 1000 === 0
+        ? motorGrootte / 1000 + ".0"
+        : (motorGrootte / 1000).toFixed(1);
     document.querySelector(".motortype").innerHTML = afgerondMotor;
 
     document.querySelector(".bouwjaar").innerHTML =
       data.datum_eerste_toelating.substring(0, 4);
 
-     let datum = new Date(data.laatst_onderhouds_datum); 
-     let dag = datum.getDate().toString().padStart(2, "0");
-     let maand = (datum.getMonth() + 1).toString().padStart(2, "0");
-     let jaar = datum.getFullYear();
-      
-     let datumInDagMaandJaarFormaat = dag + "-" + maand + "-" + jaar;
+    if (data.laatst_onderhouds_datum === "Onbekend") {
+      document.querySelector(".laatsteonderhoud").innerHTML = "Onbekend";
+    } else {
+      let datum = new Date(data.laatst_onderhouds_datum);
+      let dag = datum.getDate().toString().padStart(2, "0");
+      let maand = (datum.getMonth() + 1).toString().padStart(2, "0");
+      let jaar = datum.getFullYear();
 
-    document.querySelector(".laatsteonderhoud").innerHTML =
-      datumInDagMaandJaarFormaat;
+      let datumInDagMaandJaarFormaat = dag + "-" + maand + "-" + jaar;
+
+      document.querySelector(".laatsteonderhoud").innerHTML =
+        datumInDagMaandJaarFormaat;
+    }
   }, []);
 
   return (

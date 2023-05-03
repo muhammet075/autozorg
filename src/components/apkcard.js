@@ -8,6 +8,7 @@ function Apkcard() {
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
 
+
     function daysRemaining(dateString) {
       const year = dateString.slice(0, 4);
       const month = dateString.slice(4, 6);
@@ -21,16 +22,22 @@ function Apkcard() {
 
     const remainingDays = daysRemaining(data.apk_datum);
     document.querySelector(".apkdagen").innerHTML = remainingDays;
-    document.querySelector(".apkdagen2").innerHTML = remainingDays;
 
-    if (remainingDays < 60) {
-      document.querySelector(".apkcontent").classList.add("displaynone");
-      document.querySelector(".apkverloopt").classList.remove("displaynone");
-      document.querySelector(".apklink").classList.remove("displaynone");
-      document.querySelector(".apkgeldig").classList.add("ongeldigapk");
-    } else{
-      localStorage.removeItem("apkafspraak");
+    if (remainingDays < 0) {
+      document.querySelector(".apkverloopt").innerHTML =
+        "De APK is verlopen van jouw auto! Je kan nu niet meer de weg op. Je mag alleen naar een garage rijden om een APK keuring te doen. Maak direct een afspraak.";
+    } else {
+      document.querySelector(".apkdagen2").innerHTML = remainingDays;
     }
+
+      if (remainingDays < 60) {
+        document.querySelector(".apkcontent").classList.add("displaynone");
+        document.querySelector(".apkverloopt").classList.remove("displaynone");
+        document.querySelector(".apklink").classList.remove("displaynone");
+        document.querySelector(".apkgeldig").classList.add("ongeldigapk");
+      } else {
+        localStorage.removeItem("apkafspraak");
+      }
 
 
 

@@ -160,7 +160,11 @@ function Kenteken() {
       kmStandVoorlopig = Number(kmStandVoorlopig.replace(/\./g, ""));
       let kmstand = kmStandVoorlopig;
 
+    if (kmstand < 15000){
+    kentekendata["onderhoud_bij_aantal_km"] = 15000;
+    } else {
     kentekendata["onderhoud_bij_aantal_km"] = kmstand;
+    }
     kentekendata["eerst_volgende_onderhoud"] = "Grote onderhoudsbeurt";
   }
 
@@ -619,12 +623,16 @@ function Kenteken() {
 
           <p>
             Hierdoor voorkom jij schade en slijtage aan je motor en dat kan dure
-            reparaties kosten.
+            reparaties voorkomen.
           </p>
 
           <p>
             Na jouw onderhoudsbeurt is deze app overzichtelijker en gereed voor
             gebruik!
+          </p>
+
+          <p>
+            Als jouw huidige kilometerstand onder de 15.000 km is dan hoef jij je nog geen zorgen te maken. De eerst volgende onderhoudsbeurt vindt dan plaatst als de kilometerstand bij de 15.000 km is.
           </p>
         </div>
         <button onClick={onderhoudOnbekendButton} className={styles.button}>
