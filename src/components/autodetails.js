@@ -30,8 +30,15 @@ function Autodetails() {
     document.querySelector(".bouwjaar").innerHTML =
       data.datum_eerste_toelating.substring(0, 4);
 
+     let datum = new Date(data.laatst_onderhouds_datum); 
+     let dag = datum.getDate().toString().padStart(2, "0");
+     let maand = (datum.getMonth() + 1).toString().padStart(2, "0");
+     let jaar = datum.getFullYear();
+      
+     let datumInDagMaandJaarFormaat = dag + "-" + maand + "-" + jaar;
+
     document.querySelector(".laatsteonderhoud").innerHTML =
-      data.laatst_onderhouds_datum;
+      datumInDagMaandJaarFormaat;
   }, []);
 
   return (

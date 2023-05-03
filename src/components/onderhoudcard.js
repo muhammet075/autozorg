@@ -50,7 +50,15 @@ function Onderhoudcard() {
         document.querySelector(".onderhoudsafspraakcard").classList.remove("displaynone");
 
         document.querySelector(".onderhoudsafspraaknaam").innerHTML = onderhoudsAfspraakData.garagenaam;
-        document.querySelector(".onderhoudsafspraakdatum").innerHTML = onderhoudsAfspraakData.datum + " " + onderhoudsAfspraakData.tijd;
+
+             let datum = new Date(onderhoudsAfspraakData.datum);
+             let dag = datum.getDate().toString().padStart(2, "0");
+             let maand = (datum.getMonth() + 1).toString().padStart(2, "0");
+             let jaar = datum.getFullYear();
+
+             let datumInDagMaandJaarFormaat = dag + "-" + maand + "-" + jaar;
+
+        document.querySelector(".onderhoudsafspraakdatum").innerHTML = datumInDagMaandJaarFormaat + " " + onderhoudsAfspraakData.tijd;
         document.querySelector(".onderhoudsafspraakadres").innerHTML = onderhoudsAfspraakData.adres + "<br/>" + onderhoudsAfspraakData.postcode_plaats;
        }
 
@@ -80,7 +88,15 @@ function Onderhoudcard() {
         document.querySelector(".serviceafspraakcontainer").classList.remove("displaynone");
 
         document.querySelector(".serviceafspraaknaam").innerHTML = serviceAfspraakData.garagenaam;
-        document.querySelector(".serviceafspraakdatum").innerHTML = serviceAfspraakData.datum + " " + serviceAfspraakData.tijd;
+
+             let datum = new Date(serviceAfspraakData.datum);
+             let dag = datum.getDate().toString().padStart(2, "0");
+             let maand = (datum.getMonth() + 1).toString().padStart(2, "0");
+             let jaar = datum.getFullYear();
+
+             let datumInDagMaandJaarFormaat = dag + "-" + maand + "-" + jaar;
+
+        document.querySelector(".serviceafspraakdatum").innerHTML = datumInDagMaandJaarFormaat + " " + serviceAfspraakData.tijd;
         document.querySelector(".serviceafspraakadres").innerHTML = serviceAfspraakData.adres + "<br/>" + serviceAfspraakData.postcode_plaats;
 
         if (!serviceAfspraakData.werkzaamheden){

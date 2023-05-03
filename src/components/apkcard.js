@@ -46,7 +46,16 @@ function Apkcard() {
        document.querySelector(".apkafspraakcontainer").classList.remove("displaynone");
 
        document.querySelector(".apkafspraaknaam").innerHTML = apkAfspraakData.garagenaam;
-       document.querySelector(".apkafspraakdatum").innerHTML = apkAfspraakData.datum + " " + apkAfspraakData.tijd;
+
+
+             let datum = new Date(apkAfspraakData.datum);
+             let dag = datum.getDate().toString().padStart(2, "0");
+             let maand = (datum.getMonth() + 1).toString().padStart(2, "0");
+             let jaar = datum.getFullYear();
+
+             let datumInDagMaandJaarFormaat = dag + "-" + maand + "-" + jaar;
+
+       document.querySelector(".apkafspraakdatum").innerHTML = datumInDagMaandJaarFormaat.datum + " " + apkAfspraakData.tijd;
        document.querySelector(".apkafspraakadres").innerHTML = apkAfspraakData.adres + "<br/>" + apkAfspraakData.postcode_plaats;
      }
 
