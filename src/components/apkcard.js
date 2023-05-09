@@ -3,32 +3,44 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 function Apkcard() {
+      
+let apkDatum;
+
   useEffect(() => {
+
+function getAPK() {
 
     let getItem = localStorage.getItem("kenteken");
     let data = JSON.parse(getItem);
 
+  const apiAPK =
+    "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + data.kenteken;
 
-    function daysRemaining(dateString) {
-      const year = dateString.slice(0, 4);
-      const month = dateString.slice(4, 6);
-      const day = dateString.slice(6, 8);
-      const targetDate = new Date(`${year}-${month}-${day}`).getTime();
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-      const days = Math.ceil(distance / (1000 * 60 * 60 * 24));
-      return days;
-    }
+  fetch(apiAPK)
+    .then((response) => response.json())
+    .then((jsondata) => {
+    
+      function daysRemaining(dateString) {
+        const year = dateString.slice(0, 4);
+        const month = dateString.slice(4, 6);
+        const day = dateString.slice(6, 8);
+        const targetDate = new Date(`${year}-${month}-${day}`).getTime();
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        const days = Math.ceil(distance / (1000 * 60 * 60 * 24));
+        return days;
+      }
 
-    const remainingDays = daysRemaining(data.apk_datum);
-    document.querySelector(".apkdagen").innerHTML = remainingDays;
+      console.log(apkDatum);
+      const remainingDays = daysRemaining(jsondata[0].vervaldatum_apk);
+      document.querySelector(".apkdagen").innerHTML = remainingDays;
 
-    if (remainingDays < 0) {
-      document.querySelector(".apkverloopt").innerHTML =
-        "De APK is verlopen van jouw auto! Je kan nu niet meer de weg op. Je mag alleen naar een garage rijden om een APK keuring te doen. Maak direct een afspraak.";
-    } else {
-      document.querySelector(".apkdagen2").innerHTML = remainingDays;
-    }
+      if (remainingDays < 0) {
+        document.querySelector(".apkverloopt").innerHTML =
+          "De APK is verlopen van jouw auto! Je kan nu niet meer de weg op. Je mag alleen naar een garage rijden om een APK keuring te doen. Maak direct een afspraak.";
+      } else {
+        document.querySelector(".apkdagen2").innerHTML = remainingDays;
+      }
 
       if (remainingDays < 60) {
         document.querySelector(".apkcontent").classList.add("displaynone");
@@ -39,32 +51,41 @@ function Apkcard() {
         localStorage.removeItem("apkafspraak");
       }
 
+      let getApkAfspraak = localStorage.getItem("apkafspraak");
+      let apkAfspraakData = JSON.parse(getApkAfspraak);
 
+      if (apkAfspraakData === null) {
+        console.log("geen apk afspraak");
+      } else {
+        console.log(apkAfspraakData);
+        console.log("wel apk afsrpaak");
+        document
+          .querySelector(".apkcardcontainer")
+          .classList.add("displaynone");
+        document
+          .querySelector(".apkafspraakcontainer")
+          .classList.remove("displaynone");
 
-     let getApkAfspraak = localStorage.getItem("apkafspraak");
-     let apkAfspraakData = JSON.parse(getApkAfspraak);
+        document.querySelector(".apkafspraaknaam").innerHTML =
+          apkAfspraakData.garagenaam;
 
-     if (apkAfspraakData === null) {
-       console.log("geen apk afspraak");
-     } else {
-      console.log(apkAfspraakData);
-       console.log("wel apk afsrpaak");
-       document.querySelector(".apkcardcontainer").classList.add("displaynone");
-       document.querySelector(".apkafspraakcontainer").classList.remove("displaynone");
+        let datum = new Date(apkAfspraakData.datum);
+        let dag = datum.getDate().toString().padStart(2, "0");
+        let maand = (datum.getMonth() + 1).toString().padStart(2, "0");
+        let jaar = datum.getFullYear();
 
-       document.querySelector(".apkafspraaknaam").innerHTML = apkAfspraakData.garagenaam;
+        let datumInDagMaandJaarFormaat = dag + "-" + maand + "-" + jaar;
 
+        document.querySelector(".apkafspraakdatum").innerHTML =
+          datumInDagMaandJaarFormaat.datum + " " + apkAfspraakData.tijd;
+        document.querySelector(".apkafspraakadres").innerHTML =
+          apkAfspraakData.adres + "<br/>" + apkAfspraakData.postcode_plaats;
+      }
+    })
+    .catch((error) => console.error(error));
+}
 
-             let datum = new Date(apkAfspraakData.datum);
-             let dag = datum.getDate().toString().padStart(2, "0");
-             let maand = (datum.getMonth() + 1).toString().padStart(2, "0");
-             let jaar = datum.getFullYear();
-
-             let datumInDagMaandJaarFormaat = dag + "-" + maand + "-" + jaar;
-
-       document.querySelector(".apkafspraakdatum").innerHTML = datumInDagMaandJaarFormaat.datum + " " + apkAfspraakData.tijd;
-       document.querySelector(".apkafspraakadres").innerHTML = apkAfspraakData.adres + "<br/>" + apkAfspraakData.postcode_plaats;
-     }
+getAPK();
 
   }, []);
 
