@@ -125,8 +125,6 @@ function Kenteken() {
   }
 
 
-
-
   function fourthButton() {
     if (document.querySelector(".huidigeKilometerstand").value === "") {
       document
@@ -397,6 +395,12 @@ function Kenteken() {
       .classList.remove("errorstate");
   }
 
+  function cleanInput(event) {
+    const inputValue = event.target.value;
+    const sanitizedValue = inputValue.replace(/[-_=.,;:'\/\\[\]{}\s]/g, "");
+    event.target.value = sanitizedValue;
+  }
+
   return (
     <div>
       <div className={styles.kentekenheader}>
@@ -450,6 +454,7 @@ function Kenteken() {
                 maxLength={6}
                 className='kentekeninput'
                 onClick={removeKentekeninputError}
+                onChange={cleanInput}
               ></input>
             </div>
           </section>
@@ -633,7 +638,9 @@ function Kenteken() {
           </p>
 
           <p>
-            Als jouw huidige kilometerstand onder de 15.000 km is dan hoef jij je nog geen zorgen te maken. De eerst volgende onderhoudsbeurt vindt dan plaatst als de kilometerstand bij de 15.000 km is.
+            Als jouw huidige kilometerstand onder de 15.000 km is dan hoef jij
+            je nog geen zorgen te maken. De eerst volgende onderhoudsbeurt vindt
+            dan plaatst als de kilometerstand bij de 15.000 km is.
           </p>
         </div>
         <button onClick={onderhoudOnbekendButton} className={styles.button}>
