@@ -401,6 +401,30 @@ function Kenteken() {
     event.target.value = sanitizedValue;
   }
 
+  function firstInfo(){
+    alert("Vul de kenteken plaat in van jouw eigen auto. De gegevens zullen worden opgevraagd bij de RDW en aan de hand van jouw auto bereken we wanneer jouw auto onderhoud nodig heeft en ook wanneer de APK-beurt geregld moet worden.")
+  }
+
+  function secondInfo(){
+    alert("De huidige kilometerstand kan je zien op je snelheidsmeter van je auto.")
+  }
+
+  function thirdInfo(){
+    alert("De laatst uitgevoerde onderhoud staat in jouw onderhoudsboekje. Als je geen onderhoudsboekje hebt en geen papieren hebt van de laatst uitgevoerde onderhoud door de vorige eigenaar dan klik je op 'NEE'.")
+  }
+
+  function fourthInfo() {
+    alert("De laatst uitgevoerde onderhoud staat in jouw onderhoudsboekje. Als je geen onderhoudsboekje hebt en geen papieren hebt van de laatst uitgevoerde onderhoud door de vorige eigenaar dan klik je op 'NEE'.");
+  }
+
+  function fivthInfo() {
+    alert("Er zijn twee soorten onderhoudsbeurten, een grote en een kleine. In het onderhoudsboekje staat of de laatst uitgevoerde onderhoudsbeurt een kleine of een grote is geweest.");
+  }
+
+  function sixtInfo(){
+    alert("De datum van de laatst uitevoerde onderhoud staat ook in het onderhoudsboekje.")
+  }
+
   return (
     <div>
       <div className={styles.kentekenheader}>
@@ -443,6 +467,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
+          <button onClick={firstInfo}>I</button>
           <p>Vul jouw kentekenplaat hieronder in.</p>
           <section className='firstkentekeninput'>
             <div>
@@ -493,6 +518,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
+          <button onClick={secondInfo}>I</button>
           <p>Wat is de huidige kilometerstand?</p>
           <section className='huidigekmsection'>
             <input
@@ -518,6 +544,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
+          <button onClick={thirdInfo}>I</button>
           <p>
             Weet je wanneer de laatst uitgevoerde onderhoudsbeurt is uitgevoerd?
           </p>
@@ -545,6 +572,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
+          <button onClick={fourthInfo}>I</button>
           <p>Wat was de kilometerstand van de laatste onderhoudsbeurt?</p>
           <section className='kmstandonderhoudsection'>
             <input
@@ -561,6 +589,7 @@ function Kenteken() {
 
           <br />
 
+          <button onClick={fivthInfo}>I</button>
           <p>Was het een grote of kleine onderhoudsbeurt?</p>
 
           <section className='radiossection'>
@@ -597,6 +626,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div className='datumcontainerinner'>
+          <button onClick={sixtInfo}>I</button>
           <p>Wat was de datum van de laatst uitgevoerd beurt?</p>
           <input
             type='date'
