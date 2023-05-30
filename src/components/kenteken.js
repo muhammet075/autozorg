@@ -467,7 +467,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
-          <button onClick={firstInfo}>I</button>
+          <button onClick={firstInfo} className="questionbutton">?</button>
           <p>Vul jouw kentekenplaat hieronder in.</p>
           <section className='firstkentekeninput'>
             <div>
@@ -518,7 +518,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
-          <button onClick={secondInfo}>I</button>
+          <button onClick={secondInfo} className="questionbutton">?</button>
           <p>Wat is de huidige kilometerstand?</p>
           <section className='huidigekmsection'>
             <input
@@ -544,7 +544,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
-          <button onClick={thirdInfo}>I</button>
+          <button onClick={thirdInfo} className="questionbutton">?</button>
           <p>
             Weet je wanneer de laatst uitgevoerde onderhoudsbeurt is uitgevoerd?
           </p>
@@ -572,7 +572,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div>
-          <button onClick={fourthInfo}>I</button>
+          <button onClick={fourthInfo} className="questionbutton">?</button>
           <p>Wat was de kilometerstand van de laatste onderhoudsbeurt?</p>
           <section className='kmstandonderhoudsection'>
             <input
@@ -589,7 +589,7 @@ function Kenteken() {
 
           <br />
 
-          <button onClick={fivthInfo}>I</button>
+          <button onClick={fivthInfo} className="questionbutton">?</button>
           <p>Was het een grote of kleine onderhoudsbeurt?</p>
 
           <section className='radiossection'>
@@ -626,7 +626,7 @@ function Kenteken() {
           <Image src={backIco} alt='Terug icoon' />
         </button>
         <div className='datumcontainerinner'>
-          <button onClick={sixtInfo}>I</button>
+          <button onClick={sixtInfo} className="questionbutton">?</button>
           <p>Wat was de datum van de laatst uitgevoerd beurt?</p>
           <input
             type='date'
